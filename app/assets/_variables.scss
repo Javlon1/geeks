@@ -1,0 +1,15 @@
+$black: #242323;
+$white: #fff;
+$radius: 1rem;
+$blue: #1269db;
+$transition: .5s all ease;
+
+
+
+@mixin title {
+    font-size: 3rem;
+
+    @media only screen and (max-width: 991px) {
+        font-size: 1.6rem;
+    }
+}
