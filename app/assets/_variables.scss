@@ -1,15 +1,26 @@
 $black: #242323;
+$gray: #9A9CA1;
+$bc: #FAFAFB;
 $white: #fff;
-$radius: 1rem;
-$blue: #1269db;
-$transition: .5s all ease;
+$radius: 5px;
+$blue: #4285F4;
+$purple: #605BFF;
+$green: #3A974C;
+$orange: #F29339;
+$pink: #EF37FF;
+$red: #D11A2A;
+$yelow: #FFD66B;
+
+
+$transition: .3s all ease;
+$shadow: 0 0 5px rgba(0, 0, 0, .1);
 
 
 
 @mixin title {
-    font-size: 3rem;
+    font-size: 1.3rem;
 
     @media only screen and (max-width: 991px) {
-        font-size: 1.6rem;
+        font-size: 1.1rem;
     }
 }

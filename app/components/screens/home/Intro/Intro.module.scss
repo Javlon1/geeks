@@ -2,7 +2,7 @@
 
 .intro {
     margin-top: 70px;
-    background-color: red;
+    background-color: $bc;
     max-width: 100%;
     display: flex;
     flex: 1;
@@ -16,7 +16,6 @@
         align-items: center;
         justify-content: space-between;
         padding: 2rem;
-        background: linear-gradient(-45deg, #06418e, #1572e8) !important;
 
         &__name {
             h2 {
@@ -34,7 +33,6 @@
 
     .intro {
         margin-top: 70px;
-        background-color: red;
         max-width: 100%;
         display: flex;
         flex: 1;

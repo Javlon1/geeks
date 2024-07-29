@@ -10,9 +10,12 @@
     // user-select: none;
 }
 
+body {
+    background-color: $bc;
+}
 
 ::-webkit-scrollbar {
-    width: .5rem;
+    width: .2rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -20,7 +23,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: $black;
+    background-color: $blue;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     border-bottom-left-radius: 1rem;
@@ -48,5 +51,12 @@ li {
 img {
     object-fit: cover;
     user-select: none;
-    pointer-events: none; 
+    pointer-events: none;
+}
+
+button {
+    strong {
+        color: transparent;
+        font-size: .1px;
+    }
 }

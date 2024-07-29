@@ -24,7 +24,7 @@ const Index = () => {
                 <title>Home</title>
             </Head>
 
-            <Intro />
+            {/* <Intro /> */}
         </>
     )
 }
