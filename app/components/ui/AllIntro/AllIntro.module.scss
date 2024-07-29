@@ -1,0 +1,38 @@
+@import "../../../assets/variables";
+
+.allIntro {
+    max-width: 100%;
+    height: 70px;
+    margin-top: 70px;
+    margin-left: 16rem;
+    transition: all .3s;
+    display: flex;
+    align-items: center;
+    padding-left: 1.5rem;
+
+    &__items {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        &__link {
+            h1 {
+                @include title;
+                font-weight: 600;
+                color: $black;
+            }
+        }
+    }
+}
+
+.close {
+    margin-left: 75px;
+}
+
+
+@media only screen and (max-width: 991px) {
+    .allIntro {
+        margin-left: 0;
+        padding-left: .5rem;
+    }
+}

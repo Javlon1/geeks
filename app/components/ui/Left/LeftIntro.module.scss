@@ -1,0 +1,18 @@
+@import "../../../assets/variables";
+
+.leftIntro {
+    margin-left: 16rem;
+    padding: 0 1.5rem;
+    transition: all .3s;
+}
+
+@media only screen and (max-width: 991px) {
+    .leftIntro {
+        margin-left: 0;
+        padding: 0 .5rem;
+    }
+}
+
+.close {
+    margin-left: 75px;
+}
