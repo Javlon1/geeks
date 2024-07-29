@@ -414,6 +414,8 @@
         .header {
             left: 0;
             height: 70px;
+            z-index: 999;
+
 
             &__hamburger {
                 display: block;
@@ -474,11 +476,10 @@
 
             &__profile {
                 position: fixed;
-                top: 70px;
+                top: 70.5px;
                 right: 0;
                 width: 100%;
                 background-color: $white;
-                box-shadow: $shadow;
                 padding: 1rem;
                 display: flex;
                 justify-content: flex-end;

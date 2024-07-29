@@ -76,7 +76,7 @@ const Header = () => {
     return (
         <div className={`${styles.nav} ${close ? styles.close : ""}`}>
             <div
-                className={`${styles.opacity} ${ham || addStudent || addPayment ? styles.opacityAct : ""}`}
+                className={`${styles.opacity} ${ham || addStudent || addPayment || profile ? styles.opacityAct : ""}`}
                 onClick={() => {
                     setham(false)
                     setClose(false)
