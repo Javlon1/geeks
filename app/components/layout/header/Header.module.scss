@@ -396,6 +396,7 @@
     .nav {
         .sidebar {
             left: -300px;
+            z-index: 999;
 
             &__top {
                 .x {
