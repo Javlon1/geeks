@@ -119,6 +119,7 @@ const Header = () => {
                                     key={item.id}
                                     className={`${pathname === item.link ? styles.active : ""}`}
                                     href={item.link}
+                                    onClick={() => setham(false)}
                                 >
                                     <li>
                                         <i className={item.icon}></i>
