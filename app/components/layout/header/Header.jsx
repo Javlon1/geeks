@@ -5,11 +5,14 @@ import styles from './Header.module.scss';
 import { Context } from '../../ui/Context/Context';
 import { useContext, useEffect, useState } from 'react';
 import Select from "react-select";
+import userImg from '../../../../public/img/me.jpg';
 
 const Header = () => {
     const { close, setClose } = useContext(Context);
     const [ham, setham] = useState(false);
     const [element, setElement] = useState(false);
+    const [notification, setNotification] = useState(false);
+    const [user, setUser] = useState(false);
     const [addStudent, setAddStudent] = useState(false);
     const [addPayment, setAddPayment] = useState(false);
     const [profile, setProfile] = useState(false);
@@ -21,6 +24,7 @@ const Header = () => {
         { id: 4, link: '/groups', nav: 'Guruhlar', icon: 'fa-solid fa-layer-group' },
         { id: 5, link: '/students', nav: 'O`quvchilar', icon: 'fa-solid fa-graduation-cap' },
     ]);
+
 
     const [paymentData, setPaymentData] = useState([{ id: 1, name: 'Jony', }, { id: 2, name: 'Alex', }, { id: 3, name: 'Jasur', }, { id: 4, name: 'Saidjalol', }]);
     const [selectedPayment, setSelectedPayment] = useState(null);
@@ -157,34 +161,83 @@ const Header = () => {
                     </form>
                 </div>
                 <div className={styles.header__list}>
-                    <span onClick={() => setElement(!element)} className={styles.header__list__span}>
-                        <i className="fa-solid fa-plus"></i>
-                        <p>Qo'shish</p>
-                    </span>
-                    <ul className={`${styles.header__list__elements} ${element ? styles.elementsAct : ""}`}>
-                        <li
-                            className={styles.header__list__elements__item}
-                            onClick={() => {
-                                setElement(false)
-                                setAddStudent(true)
-                                setAddPayment(false)
-                            }}
-                        >
-                            <i className='fa-solid fa-plus'></i>
-                            <p>Yangi talaba</p>
-                        </li>
-                        <li
-                            className={styles.header__list__elements__item}
-                            onClick={() => {
-                                setElement(false)
-                                setAddPayment(true)
-                                setAddStudent(false)
-                            }}
-                        >
-                            <i className="fa-solid fa-money-bill-1-wave"></i>
-                            <p>To'lov</p>
-                        </li>
-                    </ul>
+                    <div className={styles.header__list__item}>
+                        <span onClick={() => {
+                            setElement(!element)
+                            setNotification(false)
+                            setUser(false)
+                        }} className={styles.header__list__item__span}>
+                            <i className="fa-solid fa-plus"></i>
+                        </span>
+                        <ul className={`${styles.header__list__item__elements} ${element ? styles.elementsAct : ""}`}>
+                            <li
+                                className={styles.header__list__item__elements__item}
+                                onClick={() => {
+                                    setElement(false)
+                                    setAddStudent(true)
+                                    setAddPayment(false)
+                                }}
+                            >
+                                <i className='fa-solid fa-plus'></i>
+                                <p>Yangi talaba</p>
+                            </li>
+                            <li
+                                className={styles.header__list__item__elements__item}
+                                onClick={() => {
+                                    setElement(false)
+                                    setAddPayment(true)
+                                    setAddStudent(false)
+                                }}
+                            >
+                                <i className="fa-solid fa-money-bill-1-wave"></i>
+                                <p>To'lov</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className={styles.header__list__item}>
+                        <span onClick={() => {
+                            setNotification(!notification)
+                            setElement(false)
+                            setUser(false)
+                        }} className={styles.header__list__item__span}>
+                            <i className="fa-solid fa-bell"></i>
+                        </span>
+                        <div className={`${styles.header__list__item__elements} ${notification ? styles.elementsAct : ""}`}>
+                            <div className={styles.header__list__item__elements__header}>
+                                <p></p>
+                                <p>Jony</p>
+                            </div>
+                            <div className={styles.header__list__item__elements__body}>
+                                <p className={styles.text}>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.header__list__item}>
+                        <span onClick={() => {
+                            setUser(!user)
+                            setElement(false)
+                            setNotification(false)
+                        }} className={styles.header__list__item__span}>
+                            <i className="fa-solid fa-user"></i>
+                        </span>
+                        <div className={`${styles.header__list__item__elements} ${user ? styles.elementsAct : ""}`}>
+                            <div className={styles.header__list__item__elements__header}>
+                                <Image
+                                    width={40}
+                                    height={40}
+                                    src={userImg}
+                                    alt='user'
+                                />
+                                <p>Mukhammadjonov Javlon</p>
+                            </div>
+                            <div className={styles.header__list__item__elements__body}>
+                                <button>
+                                    <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <span
                     className={styles.span}
@@ -210,7 +263,6 @@ const Header = () => {
                     <div className={styles.header__list}>
                         <span onClick={() => setElement(!element)} className={styles.header__list__span}>
                             <i className="fa-solid fa-plus"></i>
-                            <p>Qo'shish</p>
                         </span>
                         <ul className={`${styles.header__list__elements} ${element ? styles.elementsAct : ""}`}>
                             <li
@@ -282,6 +334,8 @@ const Header = () => {
                                 name="comment"
                             />
                         </label>
+
+                        <button type="submit">Yuborish</button>
                     </form>
                 </div>
                 <div style={{ display: addPayment ? '' : 'none' }} className={styles.header__register__list}>

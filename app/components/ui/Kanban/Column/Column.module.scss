@@ -1,0 +1,70 @@
+.card {
+  background-color: white;
+  border-radius: 0.375rem; 
+  padding: 0.75rem; 
+  margin: 0.5rem; 
+  margin-bottom: 0;
+}
+
+.label {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem; 
+  color: white;
+  font-size: 0.875rem; 
+}
+
+.labelLowPriority {
+  background: linear-gradient(to right, #2563eb, #3b82f6);
+}
+
+.labelMediumPriority {
+  background: linear-gradient(to right, #16a34a, #22c55e);
+}
+
+.labelHighPriority {
+  background: linear-gradient(to right, #dc2626, #ef4444);
+}
+
+.title {
+  font-size: 1.125rem;
+  margin-top: 0.75rem; 
+  margin-bottom: 0.75rem; 
+  line-height: 1.5rem;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flexItems {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spaceItems {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.assigneesList {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.assigneeImage {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.addButton {
+  border: 1px dashed gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem; 
+  height: 2.25rem; 
+  border-radius: 50%; 
+}

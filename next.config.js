@@ -15,6 +15,6 @@ module.exports = {
 
   // Настройки для компонента next/image
   images: {
-    domains: [""], // Домен сайта
+    domains: ["randomuser.me"], // Домен сайта
   },
 };

@@ -3,7 +3,7 @@ import { Context } from '@/app/components/ui/Context/Context';
 import { useContext, useEffect, useState } from 'react';
 import LeftIntro from '../../ui/Left/LeftIntro';
 import Select from "react-select";
-
+import KanbanBoard from '../../ui/Kanban/KanbanBoard/KanbanBoard';
 
 const LidsIntro = () => {
     const { url } = useContext(Context);
@@ -99,7 +99,22 @@ const LidsIntro = () => {
 
                         </div>
                     </div>
+                    <div className={styles.lidsIntro__items__right}>
+                        <div className={styles.lidsIntro__items__right__header}>
+                            <span>
+                                <b>Rad kilganlar</b>
+                                <p>(33)</p>
+                            </span>
+                            <p onClick={() => setAddCollection(true)} className={styles.icon}>
+                                <i className="fa-solid fa-plus"></i>
+                            </p>
+                        </div>
+                        <div className={styles.lidsIntro__items__right__body}>
+
+                        </div>
+                    </div>
                 </div>
+                <KanbanBoard />
 
                 <div className={`${styles.lidsIntro__register} ${addStudent || addCollection ? styles.registerAct : ""}`}>
                     <div style={{ display: addStudent ? '' : 'none' }} className={styles.lidsIntro__register__list}>
@@ -154,6 +169,7 @@ const LidsIntro = () => {
                             <button type="submit">Yuborish</button>
                         </form>
                     </div>
+
                     <div style={{ display: addCollection ? '' : 'none' }} className={styles.lidsIntro__register__list}>
                         <div className={styles.lidsIntro__register__list__header}>
                             <p>To'plam qo'shish</p>

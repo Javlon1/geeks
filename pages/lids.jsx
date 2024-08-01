@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Head from 'next/head'
 import AllIntro from '@/app/components/ui/AllIntro/AllIntro';
-import LidsIntro from '@/app/components/screens/LidsIntro/LidsIntro';
+import KanbanBoard from '@/app/components/ui/Kanban/KanbanBoard/KanbanBoard';
 
 const Lids = () => {
 
@@ -27,7 +27,7 @@ const Lids = () => {
 
             <main>
                 <AllIntro text={"Lidlar"} />
-                <LidsIntro />
+                <KanbanBoard />
             </main>
         </>
     )
