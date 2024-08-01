@@ -44,17 +44,6 @@ export default function KanbanBoard() {
                     category_name: "frontend",
                     items: [
                         {
-                            id: 3,
-                            title: "Company website redesign.",
-                            chat: 1,
-                            attachment: 2,
-                            assignees: [
-                                {
-                                    avt: "https://randomuser.me/api/portraits/men/75.jpg"
-                                }
-                            ]
-                        },
-                        {
                             id: 4,
                             title: "Mobile app login process prototype.",
                             chat: 10,
@@ -116,17 +105,6 @@ export default function KanbanBoard() {
                                 }
                             ]
                         },
-                        {
-                            id: 8,
-                            title: "Mobile app login process prototype.",
-                            chat: 10,
-                            attachment: 4,
-                            assignees: [
-                                {
-                                    avt: "https://randomuser.me/api/portraits/men/67.jpg"
-                                }
-                            ]
-                        }
                     ]
                 }
             ]
@@ -178,17 +156,6 @@ export default function KanbanBoard() {
                                 }
                             ]
                         },
-                        {
-                            id: 12,
-                            title: "Mobile app login process prototype.",
-                            chat: 10,
-                            attachment: 4,
-                            assignees: [
-                                {
-                                    avt: "https://randomuser.me/api/portraits/men/67.jpg"
-                                }
-                            ]
-                        }
                     ]
                 }
             ]
@@ -214,32 +181,21 @@ export default function KanbanBoard() {
             return;
         }
 
-        const sourceDroppableIdParts = source.droppableId.split("-");
-        const destinationDroppableIdParts = destination.droppableId.split("-");
+        const [sourceBoardIndex, sourceCategoryIndex] = source.droppableId.split('-').map(Number);
+        const [destinationBoardIndex, destinationCategoryIndex] = destination.droppableId.split('-').map(Number);
 
-        const sourceBoardIndex = parseInt(sourceDroppableIdParts[0]);
-        const sourceCategoryIndex = parseInt(sourceDroppableIdParts[1]);
-        const destinationBoardIndex = parseInt(destinationDroppableIdParts[0]);
-        const destinationCategoryIndex = parseInt(destinationDroppableIdParts[1]);
+        setBoardData(prevBoardData => {
+            const newBoardData = [...prevBoardData];
+            const dragItem = newBoardData[sourceBoardIndex].category[sourceCategoryIndex].items[source.index];
 
-        const newBoardData = [...boardData];
+            newBoardData[sourceBoardIndex].category[sourceCategoryIndex].items.splice(source.index, 1);
 
-        const dragItem =
-            newBoardData[sourceBoardIndex].category[sourceCategoryIndex].items[
-            source.index
-            ];
+            newBoardData[destinationBoardIndex].category[destinationCategoryIndex].items.splice(destination.index, 0, dragItem);
 
-        newBoardData[sourceBoardIndex].category[sourceCategoryIndex].items.splice(
-            source.index,
-            1
-        );
-
-        newBoardData[destinationBoardIndex].category[
-            destinationCategoryIndex
-        ].items.splice(destination.index, 0, dragItem);
-
-        setBoardData(newBoardData);
+            return newBoardData;
+        });
     };
+
 
     return (
         <LeftIntro>
