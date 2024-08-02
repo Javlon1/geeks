@@ -18,8 +18,8 @@
         &__link {
             h1 {
                 @include title;
-                font-weight: 600;
-                color: $black;
+                font-weight: 700;
+                color: #4B5563;
             }
         }
     }
@@ -30,7 +30,7 @@
 }
 
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 1050px) {
     .allIntro {
         margin-left: 0;
         padding-left: .5rem;

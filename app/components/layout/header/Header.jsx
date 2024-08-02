@@ -6,6 +6,7 @@ import { Context } from '../../ui/Context/Context';
 import { useContext, useEffect, useState } from 'react';
 import Select from "react-select";
 import userImg from '../../../../public/img/me.jpg';
+import logo from '../../../../public/img/logo.png';
 
 const Header = () => {
     const { close, setClose } = useContext(Context);
@@ -94,6 +95,7 @@ const Header = () => {
                 <div className={styles.sidebar__top}>
                     <Link href={'/'}>
                         <Image
+                            src={logo}
                             width={150}
                             height={40}
                             alt='logo'
