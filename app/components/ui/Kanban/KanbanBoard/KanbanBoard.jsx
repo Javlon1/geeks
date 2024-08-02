@@ -20,7 +20,7 @@ export default function KanbanBoard() {
                     items: [
                         {
                             id: 1,
-                            name: "Mukhammadjonov javlon",
+                            name: "Saidullayev Said",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",
@@ -28,7 +28,7 @@ export default function KanbanBoard() {
                         },
                         {
                             id: 2,
-                            name: "Mukhammadjonov javlon",
+                            name: "Kamilov Jasur",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",
@@ -42,7 +42,7 @@ export default function KanbanBoard() {
                     items: [
                         {
                             id: 4,
-                            name: "Mukhammadjonov javlon",
+                            name: "Mukhammadjonov Javlon",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",
@@ -62,7 +62,7 @@ export default function KanbanBoard() {
                     items: [
                         {
                             id: 5,
-                            name: "Mukhammadjonov javlon",
+                            name: "Akmalov Akmal",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",
@@ -70,7 +70,7 @@ export default function KanbanBoard() {
                         },
                         {
                             id: 6,
-                            name: "Mukhammadjonov javlon",
+                            name: "Akbarov Akbar",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",
@@ -84,7 +84,7 @@ export default function KanbanBoard() {
                     items: [
                         {
                             id: 7,
-                            name: "Mukhammadjonov javlon",
+                            name: "Sayfudinova Saypi",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",
@@ -104,7 +104,7 @@ export default function KanbanBoard() {
                     items: [
                         {
                             id: 9,
-                            name: "Mukhammadjonov javlon",
+                            name: "Umarov Umroq",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",
@@ -112,7 +112,7 @@ export default function KanbanBoard() {
                         },
                         {
                             id: 10,
-                            name: "Mukhammadjonov javlon",
+                            name: "Usmonov Usmon",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",
@@ -126,7 +126,7 @@ export default function KanbanBoard() {
                     items: [
                         {
                             id: 11,
-                            name: "Mukhammadjonov javlon",
+                            name: "Pirmatova Nigina",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",

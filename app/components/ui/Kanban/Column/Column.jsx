@@ -4,16 +4,16 @@ import { Draggable } from "react-beautiful-dnd";
 import styles from './Column.module.scss';
 
 function Column({ data, index }) {
-    const [addStudent, setAddStudent] = useState(false);
-    const [addCollection, setAddCollection] = useState(false);
+    const [editStudent, setEditStudent] = useState(false);
+    const [addComment, setAddComment] = useState(false);
 
     return (
         <>
             <div
-                className={`${styles.opacity} ${addStudent || addCollection ? styles.opacityAct : ""}`}
+                className={`${styles.opacity} ${editStudent || addComment ? styles.opacityAct : ""}`}
                 onClick={() => {
-                    setAddStudent(false)
-                    setAddCollection(false)
+                    setEditStudent(false)
+                    setAddComment(false)
                 }}
             ></div>
 
@@ -40,10 +40,10 @@ function Column({ data, index }) {
                         </div>
                         <div className={styles.card__element}>
                             <span className={styles.card__element__dot}>
-                                <p onClick={() => setAddStudent(true)}>
+                                <p onClick={() => setEditStudent(true)}>
                                     <i className="fa-regular fa-clock"></i>
                                 </p>
-                                <p onClick={() => setAddCollection(true)}>
+                                <p onClick={() => setAddComment(true)}>
                                     <i className="fa-solid fa-ellipsis-vertical"></i>
                                 </p>
                             </span>
@@ -56,11 +56,11 @@ function Column({ data, index }) {
                 )}
             </Draggable>
 
-            <div className={`${styles.lidsIntro__register} ${addStudent || addCollection ? styles.registerAct : ""}`}>
-                <div style={{ display: addStudent ? '' : 'none' }} className={styles.lidsIntro__register__list}>
+            <div className={`${styles.lidsIntro__register} ${editStudent || addComment ? styles.registerAct : ""}`}>
+                <div style={{ display: editStudent ? '' : 'none' }} className={styles.lidsIntro__register__list}>
                     <div className={styles.lidsIntro__register__list__header}>
-                        <p>So'rovlar</p>
-                        <i onClick={() => setAddStudent(false)} className="fa-solid fa-x"></i>
+                        <p>{data.name}</p>
+                        <i onClick={() => setEditStudent(false)} className="fa-solid fa-x"></i>
                     </div>
 
                     <form className={styles.lidsIntro__register__list__form}>
@@ -73,12 +73,14 @@ function Column({ data, index }) {
                         </label>
                         <button type="submit">Yuborish</button>
                     </form>
+
+
                 </div>
 
-                <div style={{ display: addCollection ? '' : 'none' }} className={styles.lidsIntro__register__list}>
+                <div style={{ display: addComment ? '' : 'none' }} className={styles.lidsIntro__register__list}>
                     <div className={styles.lidsIntro__register__list__header}>
-                        <p>To'plam qo'shish</p>
-                        <i onClick={() => setAddCollection(false)} className="fa-solid fa-x"></i>
+                        <p>Talabani tahrirlash</p>
+                        <i onClick={() => setAddComment(false)} className="fa-solid fa-x"></i>
                     </div>
                 </div>
             </div>
