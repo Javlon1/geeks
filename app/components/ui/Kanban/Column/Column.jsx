@@ -229,6 +229,10 @@ function Column({ data, index }) {
                         </label>
                         <button type="submit">Qo'shish</button>
                     </form>
+
+                    <div className={styles.lidsIntro__register__list__message}>
+                        <p> <span>2024-07-12</span>  aytildi</p>
+                    </div>
                 </div>
             </div>
         </>

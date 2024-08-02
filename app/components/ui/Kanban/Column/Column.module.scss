@@ -284,6 +284,31 @@
         }
       }
     }
+
+    &__message {
+      display: block;
+      margin-top: 2rem;
+      border-radius: $radius;
+      background-color: $input;
+      padding: .2rem;
+
+      p {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: .2rem;
+        color: $dark-gray;
+        font-size: .9rem;
+        font-weight: 500;
+
+        span {
+          color: $white;
+          padding: .2rem .5rem;
+          background-color: $yelow;
+          border-radius: $radius;
+        }
+      }
+    }
   }
 }
 
