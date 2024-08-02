@@ -168,6 +168,14 @@
             padding: 1rem 0 2rem;
             width: 100%;
             position: relative;
+
+            &__form {
+                &__password {
+                    .btn {
+                        bottom: 0;
+                    }
+                }
+            }
         }
 
         &__right {
