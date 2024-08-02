@@ -77,7 +77,9 @@ const Header = () => {
             comment: ''
         })
     };
-
+    if (pathname === '/login') {
+        return null;
+    }
     return (
         <div className={`${styles.nav} ${close ? styles.close : ""}`}>
             <div

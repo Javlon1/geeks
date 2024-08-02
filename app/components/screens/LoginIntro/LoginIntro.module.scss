@@ -1,0 +1,187 @@
+@import "../../../assets/variables";
+
+.loginIntro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $bc;
+    gap: 40px;
+    position: relative;
+    height: 100vh;
+
+    &__left {
+        width: 448px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $white;
+
+        &__form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            padding: 0 20px;
+
+            &__title {
+                text-align: center;
+                color: $dark-gray;
+                font-size: 2rem;
+                font-weight: 600;
+                margin-bottom: 2rem;
+            }
+
+            &__password,
+            &__label {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                p {
+                    color: $dark-gray;
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+
+                input {
+                    width: 100%;
+                    padding: .5rem 1rem;
+                    border: 1px solid $gray;
+                    border-radius: $radius;
+                    transition: border-color .2s;
+
+                    &:focus {
+                        border: 1px solid $blue;
+                    }
+                }
+            }
+
+            &__password {
+                position: relative;
+                overflow: hidden;
+
+                .btn {
+                    position: absolute;
+                    width: 50px;
+                    height: 30px;
+                    cursor: pointer;
+                    border: 0;
+                    background: 0 0;
+                    color: $gray;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    right: 3px;
+                    bottom: 2px;
+                    background-color: $white;
+                }
+            }
+
+            &__checkbox {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                cursor: pointer;
+
+                input {
+                    width: 1rem;
+                    height: 1rem;
+                    border-radius: $radius;
+                    border: 1px solid $gray;
+                    cursor: pointer;
+                }
+
+                p {
+                    color: $dark-gray;
+                    font-size: .9rem;
+                    font-weight: 500;
+                }
+            }
+
+            &__btn {
+                margin-top: 2rem;
+                width: 100%;
+                height: 40px;
+                font-size: 1.2rem;
+                border-radius: $radius;
+                background-color: $blue;
+                color: $white;
+                border: none;
+                cursor: pointer;
+                transition: background-color .2s;
+
+                &:hover {
+                    background-color: $purple;
+                }
+            }
+        }
+    }
+
+    &__right {
+        margin-left: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .loginIntro {
+        &__right {
+            margin-left: 400px;
+
+            img {
+                width: 80%;
+                height: 80%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .loginIntro {
+        &__left {
+            width: 348px;
+        }
+
+        &__right {
+            margin-left: 250px;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .loginIntro {
+        height: auto;
+        flex-direction: column;
+
+        &__left {
+            padding: 1rem 0 2rem;
+            width: 100%;
+            position: relative;
+        }
+
+        &__right {
+            padding: 1rem;
+            order: -1;
+            margin-top: 2rem;
+            margin-left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
