@@ -73,6 +73,8 @@
     }
 
     &__dot {
+      position: relative;
+
       p {
         display: flex;
         align-items: center;
@@ -87,6 +89,68 @@
           color: $blue;
         }
       }
+
+      &__popUp {
+        position: absolute;
+        top: 1.8rem;
+        right: 0;
+        z-index: 99999;
+        background-color: $bc;
+        border-radius: 0.25rem;
+        box-shadow: $shadow;
+        padding: 0.5rem;
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+        cursor: default;
+
+        &:after {
+          border-bottom: 8px solid $bc;
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          content: "";
+          right: 2px;
+          top: -7px;
+          position: absolute;
+        }
+
+        span {
+          display: flex;
+          gap: 5px;
+          align-content: center;
+          cursor: pointer;
+          transition: $transition;
+          font-size: .8rem;
+          color: $dark-gray;
+
+          &:hover {
+            color: $blue;
+          }
+
+          &:nth-child(2) {
+            &:hover {
+              color: $red;
+            }
+          }
+        }
+      }
+
+      // &:last-child {
+      //   .card__element__dot__popUp {
+      //     top: -4rem;
+
+      //     &:after {
+      //       border-top: 8px solid $bc;
+      //       border-left: 8px solid transparent;
+      //       border-right: 8px solid transparent;
+      //       content: "";
+      //       right: 2px;
+      //       top: 3.4rem;
+      //       position: absolute;
+      //       border-bottom: none;
+      //     }
+      //   }
+      // }
     }
   }
 }
@@ -239,6 +303,10 @@
 
 .opacityAct {
   display: block !important;
+}
+
+.popUpAct {
+  display: flex !important;
 }
 
 .registerAct {

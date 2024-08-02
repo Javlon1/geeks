@@ -20,7 +20,7 @@ export default function KanbanBoard() {
                     items: [
                         {
                             id: 1,
-                            name: "Saidullayev Said",
+                            name: "Mukhammadjonov Javlon",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",
@@ -42,7 +42,7 @@ export default function KanbanBoard() {
                     items: [
                         {
                             id: 4,
-                            name: "Mukhammadjonov Javlon",
+                            name: "Saidjalol",
                             phone: "+998905251243",
                             date: "02.08.2024",
                             time: "11:51",
@@ -399,7 +399,7 @@ export default function KanbanBoard() {
                                 <p>Qaysi kursga:</p>
                                 <Select
                                     options={productOptions}
-                                    placeholder="Select course"
+                                    placeholder
                                     value={productOptions.find(option => option.value === form1.course)}
                                     onChange={(option) => handleSelectChange('form1', 'course', option)}
                                     required
@@ -409,7 +409,7 @@ export default function KanbanBoard() {
                                 <p>Qaerdan:</p>
                                 <Select
                                     options={productOptions}
-                                    placeholder="Select location"
+                                    placeholder
                                     value={productOptions.find(option => option.value === form1.location)}
                                     onChange={(option) => handleSelectChange('form1', 'location', option)}
                                     required
@@ -424,7 +424,7 @@ export default function KanbanBoard() {
                                     onChange={handleForm1Change}
                                 />
                             </label>
-                            <button type="submit">Yuborish</button>
+                            <button type="submit">Qo'shish</button>
                         </form>
                     </div>
 
@@ -450,7 +450,7 @@ export default function KanbanBoard() {
                                 <Select
                                     name="course"
                                     options={productOptions}
-                                    placeholder="Select course"
+                                    placeholder
                                     onChange={(option) => handleSelectChange('form2', 'course', option)}
                                     value={productOptions.find(option => option.value === form2.course)}
                                     required
@@ -461,7 +461,7 @@ export default function KanbanBoard() {
                                 <Select
                                     name="teacher"
                                     options={productOptions}
-                                    placeholder="Select teacher"
+                                    placeholder
                                     onChange={(option) => handleSelectChange('form2', 'teacher', option)}
                                     value={productOptions.find(option => option.value === form2.teacher)}
                                     required
@@ -472,7 +472,7 @@ export default function KanbanBoard() {
                                 <Select
                                     name="days"
                                     options={productOptions}
-                                    placeholder="Select days"
+                                    placeholder
                                     onChange={(option) => handleSelectChange('form2', 'days', option)}
                                     value={productOptions.find(option => option.value === form2.days)}
                                     required
@@ -489,7 +489,7 @@ export default function KanbanBoard() {
                                     required
                                 />
                             </label>
-                            <button type="submit">Yuborish</button>
+                            <button type="submit">Qo'shish</button>
                         </form>
                     </div>
                 </div>
