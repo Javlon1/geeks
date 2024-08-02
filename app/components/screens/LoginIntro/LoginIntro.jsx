@@ -86,7 +86,7 @@ const LoginIntro = () => {
                             className={styles.btn}
                             onClick={() => setShowPassword(!showPassword)}
                         >
-                            <i className={`fa-solid fa-${!showPassword ? "eye" : "eye-slash"}`}></i>
+                            <i className={`fa-solid fa-${showPassword ? "eye" : "eye-slash"}`}></i>
                         </button>
                     </label>
                     <label className={styles.loginIntro__left__form__checkbox}>
