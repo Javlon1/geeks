@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
-import Intro from '@/app/components/screens/home/Intro/Intro';
+import Statistic from '@/app/components/screens/Statistic/Statistic';
 
 const Index = () => {
 
@@ -23,8 +23,7 @@ const Index = () => {
 
                 <title>Home</title>
             </Head>
-
-            {/* <Intro /> */}
+            <Statistic />
         </>
     )
 }
