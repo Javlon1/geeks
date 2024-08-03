@@ -139,8 +139,9 @@ const Teachers = () => {
                                             <Image
                                                 src={userImg}
                                                 alt="user"
-                                                width={50}
-                                                height={50}
+                                                width={45}
+                                                height={45}
+                                                priority
                                             />
                                             {item.name}
                                             {item.surname}
