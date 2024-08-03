@@ -1,0 +1,124 @@
+@import "../../../assets/variables";
+
+.teachers {
+    &__table {
+        width: 100%;
+        overflow-x: scroll;
+
+        table {
+            width: 100%;
+
+            tr {
+                background-color: #fff;
+                th,
+                td {
+                    text-wrap: nowrap;
+                    padding: 0.5rem;
+                    text-align: start;
+                    height: 60px;
+                }
+
+                th {
+                    font-size: 1rem;
+                    font-weight: 600;
+
+                    label {
+                        select {
+                            font-size: 1rem;
+                            font-weight: 600;
+                            border: 0;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    &:hover {
+                        background-color: #ececec;
+                    }
+
+                    .icon__list {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 15px;
+
+                        &__item {
+                            width: 30px;
+                            height: 30px;
+                            border: 0;
+                            background-color: transparent;
+                            cursor: pointer;
+                            color: $white;
+                            font-size: 0.8rem;
+                            border-radius: 5px;
+                            transition: all 0.3s;
+
+                            &:hover {
+                                transform: scale(0.9);
+                            }
+
+                            &:nth-child(1) {
+                                background-color: $blue;
+                            }
+
+                            &:nth-child(2) {
+                                background-color: $green;
+                            }
+
+                            &:nth-child(3) {
+                                background-color: $red;
+                            }
+                        }
+                    }
+
+                    td {
+                        select {
+                            width: 100%;
+                            height: 100%;
+                            cursor: pointer;
+                            border: 0;
+                            background: 0 0;
+                        }
+                    }
+                }
+
+                .skeleton__list {
+                    &__item {
+                        @include skeleton;
+                    }
+                }
+            }
+        }
+    }
+
+    &__pagination {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: end;
+        gap: 5px;
+
+        &__btn,
+        &__items {
+            width: 35px;
+            height: 35px;
+            background: 0;
+            border: 1px solid #dbdbdb;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+
+            &:hover {
+                background-color: $blue;
+                color: $white;
+            }
+        }
+    }
+}

@@ -27,3 +27,19 @@ $shadow: 0 0 5px rgba(0, 0, 0, .1);
         font-size: 1.1rem;
     }
 }
+
+@mixin skeleton {
+    border-radius: 5px;
+    height: 40px;
+    animation: Skeleton-loading 1s linear infinite alternate;
+
+    @keyframes Skeleton-loading {
+        0% {
+            background-color: hsl(200, 20%, 70%);
+        }
+
+        100% {
+            background-color: hsl(200, 20%, 95%);
+        }
+    }
+}
