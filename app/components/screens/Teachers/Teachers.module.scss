@@ -1,49 +1,108 @@
 @import "../../../assets/variables";
 
 .teachers {
-    &__table {
+    &__items {
         width: 100%;
-        overflow-x: scroll;
+        padding: 0 1rem;
+        overflow-x: auto;
 
-        table {
-            width: 100%;
+        &__table {
+            min-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
 
-            tr {
-                background-color: #fff;
-                th,
-                td {
-                    text-wrap: nowrap;
+            &__header {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+
+                b {
                     padding: 0.5rem;
-                    text-align: start;
-                    height: 60px;
-                }
-
-                th {
-                    font-size: 1rem;
+                    text-align: left;
                     font-weight: 600;
-
-                    label {
-                        select {
-                            font-size: 1rem;
-                            font-weight: 600;
-                            border: 0;
-                            cursor: pointer;
-                        }
-                    }
+                    font-size: 1.1rem;
+                    color: $dark-gray;
+                    text-wrap: nowrap;
                 }
+
+                margin-bottom: 1rem;
             }
 
-            tbody {
-                tr {
+            &__body {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                &__item {
+                    display: grid;
+                    grid-template-columns: repeat(6, 1fr);
+                    align-items: center;
+                    gap: 10px;
+                    background-color: $white;
+                    border-radius: $radius;
+                    padding: 0.2rem 1rem;
+                    transition: $transition;
+
+                    p {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 0.5rem;
+                        text-align: left;
+                        font-size: 1rem;
+                        color: $black;
+
+                        &:first-child {
+                            color: $blue;
+                            cursor: pointer;
+                        }
+
+                        img {
+                            border-radius: 50%;
+                        }
+
+                        i {
+                            font-size: 1.1rem;
+                            color: $blue;
+                        }
+
+                        a {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            color: $blue;
+                            text-wrap: nowrap;
+
+                            &:hover {
+                                i {
+                                    animation: bounce 1.5s ease-in-out;
+                                }
+                            }
+                        }
+
+                        span {
+                            width: 160px;
+                            height: 40px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: $radius;
+                            color: $white;
+                        }
+                    }
+
                     &:hover {
-                        background-color: #ececec;
+                        transform: scale(1);
+                        background-color: $white;
+                        box-shadow: 1px 17px 44px 0px #03022912;
                     }
 
                     .icon__list {
                         display: flex;
                         align-items: center;
-                        justify-content: center;
-                        gap: 15px;
+                        gap: 10px;
 
                         &__item {
                             width: 30px;
@@ -53,7 +112,7 @@
                             cursor: pointer;
                             color: $white;
                             font-size: 0.8rem;
-                            border-radius: 5px;
+                            border-radius: $radius;
                             transition: all 0.3s;
 
                             &:hover {
@@ -64,23 +123,9 @@
                                 background-color: $blue;
                             }
 
-                            &:nth-child(2) {
-                                background-color: $green;
+                            &:last-child {
+                                background-color: #FF6A77;
                             }
-
-                            &:nth-child(3) {
-                                background-color: $red;
-                            }
-                        }
-                    }
-
-                    td {
-                        select {
-                            width: 100%;
-                            height: 100%;
-                            cursor: pointer;
-                            border: 0;
-                            background: 0 0;
                         }
                     }
                 }
@@ -93,6 +138,7 @@
             }
         }
     }
+
 
     &__pagination {
         margin-top: 1rem;
@@ -120,5 +166,24 @@
                 color: $white;
             }
         }
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px); // Поднимаем иконку вверх
+    }
+
+    60% {
+        transform: translateY(-5px); // Немного опускаем вниз
     }
 }

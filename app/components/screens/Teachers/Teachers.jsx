@@ -4,6 +4,7 @@ import styles from './Teachers.module.scss'
 import { Context } from '@/app/components/ui/Context/Context';
 import LeftIntro from '../../ui/Left/LeftIntro';
 import { useContext, useState } from 'react';
+import userImg from '../../../../public/img/me.jpg';
 
 const data = [
     {
@@ -11,80 +12,90 @@ const data = [
         name: "John",
         surname: "Doe",
         telephone: "123-456-7890",
+        birthday: "03.05.2003",
         group: 10,
-        profession: "Engineer",
+        profession: "Front-end",
     },
     {
         id: 2,
         name: "Jane",
         surname: "Smith",
         telephone: "987-654-3210",
+        birthday: "03.05.2003",
         group: 10,
-        profession: "Designer",
+        profession: "Back-end",
     },
     {
         id: 3,
         name: "Alice",
         surname: "Johnson",
         telephone: "555-123-4567",
+        birthday: "03.05.2003",
         group: 10,
-        profession: "Teacher",
+        profession: "Front-end",
     },
     {
         id: 4,
         name: "Bob",
         surname: "Brown",
         telephone: "444-555-6666",
+        birthday: "03.05.2003",
         group: 10,
-        profession: "Doctor",
+        profession: "Back-end",
     },
     {
         id: 5,
         name: "Charlie",
         surname: "Davis",
         telephone: "333-444-5555",
+        birthday: "03.05.2003",
         group: 10,
-        profession: "Lawyer",
+        profession: "Front-end",
     },
     {
         id: 6,
         name: "Emma",
         surname: "Wilson",
         telephone: "222-333-4444",
+        birthday: "03.05.2003",
         group: 10,
-        profession: "Architect",
+        profession: "Back-end",
     },
     {
         id: 7,
         name: "Michael",
         surname: "Clark",
         telephone: "111-222-3333",
+        birthday: "03.05.2003",
         group: 10,
-        profession: "Accountant",
+        profession: "Front-end",
     },
     {
         id: 8,
         name: "Olivia",
         surname: "Martinez",
         telephone: "666-777-8888",
+        birthday: "03.05.2003",
         group: 10,
-        profession: "Nurse",
+        profession: "Back-end",
     },
     {
         id: 9,
         name: "David",
         surname: "Garcia",
         telephone: "999-888-7777",
+        birthday: "03.05.2003",
         group: 10,
-        profession: "Scientist",
+        profession: "Front-end",
     },
     {
         id: 10,
         name: "Sophia",
         surname: "Anderson",
         telephone: "777-666-5555",
+        birthday: "03.05.2003",
         group: 10,
-        profession: "Artist",
+        profession: "Back-end",
     },
 ];
 
@@ -105,33 +116,52 @@ const Teachers = () => {
     const handlePrevPage = () => {
         setCurrentPage((prevPage) => prevPage - 1);
     };
+
     return (
         <LeftIntro>
             <div className={styles.teachers}>
-                <div className={styles.teachers__table}>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Ismi</th>
-                                <th>Familiyasi</th>
-                                <th>Telefoni</th>
-                                <th>Guruhlar soni</th>
-                                <th>Kasbi</th>
-                                <th></th>
-                            </tr>
-                        </thead>
+                <div className={styles.teachers__items}>
+                    <div className={styles.teachers__items__table}>
+                        <div className={styles.teachers__items__table__header}>
+                            <b>F.I.O</b>
+                            <b>Telefoni</b>
+                            <b>Tugilgan sanasi</b>
+                            <b>Guruhlar soni</b>
+                            <b>Kasbi</b>
+                            <b></b>
+                        </div>
 
-                        <tbody>
+                        <div className={styles.teachers__items__table__body}>
                             {!loader ? (
                                 data?.map((item, key) => (
-                                    <tr key={key} className={key % 2 === 0 ? styles.tableBc : ""}>
-                                        <td>{item.name}</td>
-                                        <td>{item.surname}</td>
-                                        <td>{item.telephone}</td>
-                                        <td>{item.group}-ta</td>
-                                        <td><span>{item.profession}</span></td>
+                                    <div key={key} className={styles.teachers__items__table__body__item}>
+                                        <p>
+                                            <Image
+                                                src={userImg}
+                                                alt="user"
+                                                width={50}
+                                                height={50}
+                                            />
+                                            {item.name}
+                                            {item.surname}
+                                        </p>
+                                        <p>
+                                            <a href={`tel:${item.telephone}`}>
+                                                <i className="fa-solid fa-phone"></i>
+                                                {item.telephone}
+                                            </a>
+                                        </p>
+                                        <p>
+                                            <i className="fa-solid fa-calendar-days"></i>
+                                            {item.birthday}
+                                        </p>
+                                        <p>
+                                            <i className="fa-solid fa-layer-group"></i>
+                                            {item.group}-ta
+                                        </p>
+                                        <p><span style={{ backgroundColor: item.profession === "Front-end" ? "#9A9CA1" : "#9A9CA1" }}>{item.profession}</span></p>
 
-                                        <td className={styles.icon__list}>
+                                        <span className={styles.icon__list}>
                                             <button
                                                 className={styles.icon__list__item}
                                                 onClick={() => {
@@ -143,7 +173,6 @@ const Teachers = () => {
                                             </button>
                                             <button
                                                 className={styles.icon__list__item}
-                                                style={{ backgroundColor: "red" }}
                                                 onClick={() => {
                                                     setModalDelete(true);
                                                     setDelId(item.id);
@@ -151,20 +180,20 @@ const Teachers = () => {
                                             >
                                                 <i className="fa-solid fa-trash"></i>
                                             </button>
-                                        </td>
-                                    </tr>
+                                        </span>
+                                    </div>
                                 ))
                             ) : (
-                                <tr className={styles.skeleton__list}>
-                                    <td className={styles.skeleton__list__item}></td>
-                                    <td className={styles.skeleton__list__item}></td>
-                                    <td className={styles.skeleton__list__item}></td>
-                                    <td className={styles.skeleton__list__item}></td>
-                                    <td className={styles.skeleton__list__item}></td>
-                                </tr>
+                                <div className={styles.skeleton__list}>
+                                    <span className={styles.skeleton__list__item}></span>
+                                    <span className={styles.skeleton__list__item}></span>
+                                    <span className={styles.skeleton__list__item}></span>
+                                    <span className={styles.skeleton__list__item}></span>
+                                    <span className={styles.skeleton__list__item}></span>
+                                </div>
                             )}
-                        </tbody>
-                    </table>
+                        </div>
+                    </div>
                 </div>
 
                 <div className={styles.teachers__pagination}>
