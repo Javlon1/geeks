@@ -104,6 +104,8 @@ const Teachers = () => {
     const [loader, setLoader] = useState(false);
     const [itemsPerPage, setItemsPerPage] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
+    const [addSTeacher, setAddTeacher] = useState(false);
+    const [editTeacher, setEditTeacher] = useState(false);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -116,10 +118,78 @@ const Teachers = () => {
     const handlePrevPage = () => {
         setCurrentPage((prevPage) => prevPage - 1);
     };
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        phone: '',
+        birthDate: '',
+        profession: '',
+        password: '',
+        confirmPassword: ''
+    });
+
+    const formatPhoneNumber = (number) => {
+        let newValue = number.replace(/\D/g, '');
+
+        if (!newValue.startsWith('998')) {
+            newValue = '998' + newValue;
+        }
+
+        if (newValue.length > 12) {
+            newValue = newValue.slice(0, 12);
+        }
+
+        if (newValue.length > 3) newValue = newValue.replace(/^(\d{3})(\d+)/, '$1 $2');
+        if (newValue.length > 6) newValue = newValue.replace(/^(\d{3}) (\d{2})(\d+)/, '$1 $2 $3');
+        if (newValue.length > 9) newValue = newValue.replace(/^(\d{3}) (\d{2}) (\d{3})(\d+)/, '$1 $2 $3 $4');
+        if (newValue.length > 11) newValue = newValue.replace(/^(\d{3}) (\d{2}) (\d{3}) (\d{2})(\d+)/, '$1 $2 $3 $4 $5');
+
+        return newValue.trim();
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        if (name === 'phone') {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: formatPhoneNumber(value)
+            }));
+        } else {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: value
+            }));
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        console.log(formData);
+        
+        setFormData({
+            firstName: '',
+            lastName: '',
+            phone: '',
+            birthDate: '',
+            profession: '',
+            password: '',
+            confirmPassword: ''
+        });
+    };
 
     return (
         <LeftIntro>
             <div className={styles.teachers}>
+                <div
+                    className={`${styles.opacity} ${addSTeacher || editTeacher ? styles.opacityAct : ""}`}
+                    onClick={() => {
+                        setAddTeacher(false)
+                        setEditTeacher(false)
+                    }}
+                ></div>
+                <button onClick={() => setAddTeacher(true)} className={styles.teachers__btn} type='button'>Yangisnini qo'shish</button>
                 <div className={styles.teachers__items}>
                     <div className={styles.teachers__items__table}>
                         <div className={styles.teachers__items__table__header}>
@@ -128,7 +198,6 @@ const Teachers = () => {
                             <b>Tugilgan sanasi</b>
                             <b>Guruhlar soni</b>
                             <b>Kasbi</b>
-                            <b></b>
                         </div>
 
                         <div className={styles.teachers__items__table__body}>
@@ -166,18 +235,13 @@ const Teachers = () => {
                                             <button
                                                 className={styles.icon__list__item}
                                                 onClick={() => {
-                                                    setEditModal(true);
-                                                    setProductEditId(item.id);
+                                                    setEditTeacher(true);
                                                 }}
                                             >
                                                 <i className="fa-solid fa-pen-to-square"></i>
                                             </button>
                                             <button
                                                 className={styles.icon__list__item}
-                                                onClick={() => {
-                                                    setModalDelete(true);
-                                                    setDelId(item.id);
-                                                }}
                                             >
                                                 <i className="fa-solid fa-trash"></i>
                                             </button>
@@ -226,6 +290,77 @@ const Teachers = () => {
                     >
                         <i className="fa-solid fa-angles-right"></i>
                     </button>
+                </div>
+
+                <div className={`${styles.teachers__register} ${addSTeacher || editTeacher ? styles.registerAct : ""}`}>
+                    <div style={{ display: addSTeacher ? '' : 'none' }} className={styles.teachers__register__list}>
+                        <div className={styles.teachers__register__list__header}>
+                            <p>Ustoz qo'shish</p>
+                            <i onClick={() => setAddTeacher(false)} className="fa-solid fa-x"></i>
+                        </div>
+                        <form className={styles.teachers__register__list__form} onSubmit={handleSubmit}>
+                            <label htmlFor="">
+                                <p>Ismi</p>
+                                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Familiyasi</p>
+                                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Telefoni:</p>
+                                <input type="text" name="phone" value={formData.phone} onChange={handleChange} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Tug'ilgan sanasi:</p>
+                                <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Kasbi:</p>
+                                <input type="text" name="profession" value={formData.profession} onChange={handleChange} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Parol:</p>
+                                <input type="text" name="password" value={formData.password} onChange={handleChange} />
+                            </label>
+
+                            <button type="submit">Yuborish</button>
+                        </form>
+                    </div>
+                    <div style={{ display: editTeacher ? '' : 'none' }} className={styles.teachers__register__list}>
+                        <div className={styles.teachers__register__list__header}>
+                            <p>Ustozni taxrirlash</p>
+                            <i onClick={() => setEditTeacher(false)} className="fa-solid fa-x"></i>
+                        </div>
+                        <form className={styles.teachers__register__list__form} onSubmit={handleSubmit}>
+                            <label htmlFor="">
+                                <p>Ismi</p>
+                                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Familiyasi</p>
+                                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Telefoni:</p>
+                                <input type="text" name="phone" value={formData.phone} onChange={handleChange} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Tug'ilgan sanasi:</p>
+                                <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Kasbi:</p>
+                                <input type="text" name="profession" value={formData.profession} onChange={handleChange} />
+                            </label>
+                            <label htmlFor="">
+                                <p>Parol:</p>
+                                <input type="text" name="password" value={formData.password} onChange={handleChange} />
+                            </label>
+
+                            <button type="submit">Yuborish</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </LeftIntro>
