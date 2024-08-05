@@ -15,7 +15,16 @@ const items = [
         phone: "998901234567",
         date: "2024-08-05",
     },
-    // Add more items as needed
+    {
+        name: "Another Person",
+        phone: "998901234567",
+        date: "2024-08-05",
+    },
+    {
+        name: "Another Person",
+        phone: "998901234567",
+        date: "2024-08-05",
+    },
 ];
 const Detail = () => {
     const { lan } = useContext(Context);
