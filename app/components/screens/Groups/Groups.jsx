@@ -5,6 +5,7 @@ import { Context } from '@/app/components/ui/Context/Context';
 import LeftIntro from '../../ui/Left/LeftIntro';
 import { useContext, useState } from 'react';
 import Select from "react-select";
+import { useRouter } from 'next/router';
 
 const data = [
     {
@@ -56,6 +57,7 @@ const data = [
 
 
 const Groups = () => {
+    const router = useRouter();
     const { lan } = useContext(Context);
     const [loader, setLoader] = useState(false);
     const [itemsPerPage, setItemsPerPage] = useState(1);
@@ -93,7 +95,7 @@ const Groups = () => {
             [name]: selectedOption ? selectedOption.value : '',
         }));
     };
-    console.log(filters);
+
     const [formData, setFormData] = useState({
         name: '',
         course: null,
@@ -204,7 +206,11 @@ const Groups = () => {
                             {!loader ? (
                                 data?.map((item, key) => (
                                     <div key={key} className={styles.groups__items__table__body__item}>
-                                        <p>{item.group}</p>
+                                        <p
+                                            onClick={() => {
+                                                router.push(`/group-detail`);
+                                            }}
+                                        >{item.group}</p>
                                         <p><i className="fa-solid fa-chalkboard-user"></i> {item.teacher}</p>
                                         <div className={styles.groups__items__table__body__item__date}>
                                             <b>{item.days}</b>
