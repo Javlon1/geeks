@@ -344,6 +344,161 @@
     }
 }
 
+.attendance {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    gap: 1rem;
+
+    &__top {
+        width: 100%;
+        border-bottom: 1px solid $gray;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        span {
+            position: relative;
+            top: 1px;
+            padding: .2rem .5rem;
+            border-radius: 10px 10px 0 0;
+            border: 1px solid transparent;
+            border-bottom: 1px solid transparent;
+            cursor: pointer;
+            transition: $transition;
+
+            .left,
+            .right {
+                width: 10px;
+                height: 10px;
+                background-color: transparent;
+                position: absolute;
+                bottom: 0;
+            }
+
+            .left {
+                left: -6px;
+                bottom: -5px;
+
+                &::after {
+                    content: '';
+                    width: 5px;
+                    height: 5px;
+                    left: -2px;
+                    top: -2px;
+                    position: absolute;
+                    background-color: $bc;
+                    border: 1px solid transparent;
+                    border-radius: 100% 0% 100% 0% / 100% 100% 0% 0%;
+                    border-bottom: 0;
+                    border-right: 0;
+                    transform: rotate(180deg);
+                }
+            }
+
+            .right {
+                bottom: -5px;
+                right: -5px;
+
+                &::after {
+                    content: '';
+                    width: 5px;
+                    height: 5px;
+                    right: -2px;
+                    top: -2px;
+                    position: absolute;
+                    background-color: $bc;
+                    border: 1px solid transparent;
+                    border-radius: 100% 0% 100% 0% / 100% 100% 0% 0%;
+                    border-bottom: 0;
+                    border-right: 0;
+                    transform: rotate(-90deg);
+                }
+            }
+
+            &:hover {
+                border: 1px solid $gray;
+                border-bottom: 1px solid $bc;
+                background-color: $bc;
+
+                .left {
+                    background-color: $bc;
+
+                    &::after {
+                        top: 0;
+                        left: .1px;
+                        border: 1px solid $gray;
+                        border-bottom: 0;
+                        border-right: 0;
+                    }
+                }
+
+                .right {
+                    background-color: $bc;
+
+                    &::after {
+                        top: 0;
+                        right: -1px;
+                        border: 1px solid $gray;
+                        border-bottom: 0;
+                        border-right: 0;
+                    }
+                }
+            }
+
+            &:first-child {
+                .left {
+                    display: none;
+                }
+            }
+        }
+
+
+    }
+
+    &__content {
+        padding: 1rem;
+        border-radius: $radius;
+        background-color: $white;
+        box-shadow: $shadow;
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+
+            .month__selector {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                p {
+                    padding: .3rem 1rem;
+                    background-color: $bc;
+                    cursor: pointer;
+                    border-radius: $radius;
+                }
+            }
+        }
+
+        &__container {
+            display: flex;
+        }
+    }
+}
+
+.actAttendance {
+    background-color: $white;
+    border: 1px solid $gray !important;
+    border-bottom: 1px solid $white !important;
+}
+
+.monthAct {
+    background-color: $green !important;
+    color: $white;
+}
+
 .mt {
     margin-top: 1rem;
 }
@@ -413,6 +568,7 @@
 
             &__content {
                 min-width: 390px;
+
                 &__name {
                     font-size: .9rem;
                 }

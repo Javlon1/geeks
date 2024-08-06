@@ -1,37 +1,32 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import styles from './Detail.module.scss'
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from './Detail.module.scss';
 import { Context } from '@/app/components/ui/Context/Context';
 import LeftIntro from '@/app/components/ui/Left/LeftIntro';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
+
 const items = [
-    {
-        name: "Mukhammadjonov Javlon",
-        phone: "998905251243",
-        date: "2024-08-04",
-    },
-    {
-        name: "Another Person",
-        phone: "998901234567",
-        date: "2024-08-05",
-    },
-    {
-        name: "Another Person",
-        phone: "998901234567",
-        date: "2024-08-05",
-    },
-    {
-        name: "Another Person",
-        phone: "998901234567",
-        date: "2024-08-05",
-    },
+    { name: "Mukhammadjonov Javlon", phone: "998905251243", date: "2024-08-04" },
+    { name: "Another Person", phone: "998901234567", date: "2024-08-05" },
+    // Добавьте другие записи здесь...
 ];
+
 const Detail = () => {
     const { lan } = useContext(Context);
     const [activePopUp, setActivePopUp] = useState(null);
+    const [activeItem, setActiveItem] = useState('Davomat');
+
     const togglePopUp = (index) => {
         setActivePopUp(activePopUp === index ? null : index);
     };
+
+    const attendanceData = ['Davomat', 'Arxivlangan talabalar', 'Izohlar'];
+
+    const handleClick = (item) => {
+        setActiveItem(item);
+    };
+
+
 
     return (
         <LeftIntro>
@@ -68,24 +63,12 @@ const Detail = () => {
                             </span>
                         </div>
                         <div className={styles.detail__left__content__btns}>
-                            <span>
-                                <i className="fa-solid fa-pen"></i>
-                            </span>
-                            <span>
-                                <i className="fa-solid fa-trash"></i>
-                            </span>
-                            <span>
-                                <i className="fa-solid fa-square"></i>
-                            </span>
-                            <span>
-                                <i className="fa-solid fa-plus"></i>
-                            </span>
-                            <span>
-                                <i className="fa-solid fa-dollar-sign"></i>
-                            </span>
-                            <span>
-                                <i className="fa-regular fa-envelope"></i>
-                            </span>
+                            <span><i className="fa-solid fa-pen"></i></span>
+                            <span><i className="fa-solid fa-trash"></i></span>
+                            <span><i className="fa-solid fa-square"></i></span>
+                            <span><i className="fa-solid fa-plus"></i></span>
+                            <span><i className="fa-solid fa-dollar-sign"></i></span>
+                            <span><i className="fa-regular fa-envelope"></i></span>
                         </div>
                     </div>
                     <div className={styles.detail__left__notification}>
@@ -127,8 +110,29 @@ const Detail = () => {
                     ))}
                 </div>
             </div>
+            <div className={styles.attendance}>
+                <div className={styles.attendance__top}>
+                    {attendanceData.map((item) => (
+                        <span
+                            key={item}
+                            className={`${styles.left} ${activeItem === item ? styles.actAttendance : ''}`}
+                            onClick={() => handleClick(item)}
+                        >
+                            <p className={styles.left}></p>
+                            {item}
+                            <p className={styles.right}></p>
+                        </span>
+                    ))}
+                </div>
+                <div className={styles.attendance__content}>
+                    <div className={styles.attendance__content__header}>
+                        <h3>{activeItem}</h3>
+                    </div>
+
+                </div>
+            </div>
         </LeftIntro>
-    )
-}
+    );
+};
 
 export default Detail;
