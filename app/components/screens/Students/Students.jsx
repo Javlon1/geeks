@@ -82,6 +82,25 @@ const Students = () => {
         label: item.name,
     }));
 
+    const formatPhoneNumber = (number) => {
+        let newValue = number.replace(/\D/g, '');
+
+        if (!newValue.startsWith('998')) {
+            newValue = '998' + newValue;
+        }
+
+        if (newValue.length > 12) {
+            newValue = newValue.slice(0, 12);
+        }
+
+        if (newValue.length > 3) newValue = newValue.replace(/^(\d{3})(\d+)/, '$1 $2');
+        if (newValue.length > 6) newValue = newValue.replace(/^(\d{3}) (\d{2})(\d+)/, '$1 $2 $3');
+        if (newValue.length > 9) newValue = newValue.replace(/^(\d{3}) (\d{2}) (\d{3})(\d+)/, '$1 $2 $3 $4');
+        if (newValue.length > 11) newValue = newValue.replace(/^(\d{3}) (\d{2}) (\d{3}) (\d{2})(\d+)/, '$1 $2 $3 $4 $5');
+
+        return newValue.trim();
+    };
+
     const [filters, setFilters] = useState({
         status: null,
         teacher: null,
@@ -89,50 +108,66 @@ const Students = () => {
         day: null,
     });
 
-    const handleFilterChange = (selectedOption, { name }) => {
-        setFilters((prevFilters) => ({
-            ...prevFilters,
-            [name]: selectedOption ? selectedOption.value : '',
-        }));
+    const handleFiltersChange = (name, selectedOption) => {
+        setFilters({
+            ...filters,
+            [name]: selectedOption,
+        });
+    };
+
+
+    const handleFilter = () => {
+        const appliedFilters = {
+            status: filters.status ? filters.status.value : null,
+            teacher: filters.teacher ? filters.teacher.value : null,
+            course: filters.course ? filters.course.value : null,
+            day: filters.day ? filters.day.value : null,
+        };
+
+        console.log("Applied Filters:", appliedFilters);
     };
 
     const [formData, setFormData] = useState({
-        name: '',
+        phone: "",
+        firstName: "",
+        lastName: "",
         course: null,
-        teacher: null,
-        days: null,
-        room: null,
-        startTime: '',
-        startDate: '',
+        group: null,
+        notes: "",
     });
 
-    const handleInputChange = (e) => {
+
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: value,
+            [name]: name === "phone" ? formatPhoneNumber(value) : value,
         }));
     };
+
 
     const handleSelectChange = (name, selectedOption) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: selectedOption ? selectedOption.value : '',
-        }));
+        setFormData({
+            ...formData,
+            [name]: selectedOption,
+        });
     };
 
-    const handleSubmit = async (e) => {
+
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
-        setFormData({
-            name: '',
-            course: null,
-            teacher: null,
-            days: null,
-            room: null,
-            startTime: '',
-            startDate: '',
-        })
+
+        const dataToSubmit = {
+            phone: formData.phone,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            course: formData.course ? formData.course.value : null,
+            group: formData.group ? formData.group.value : null,
+            notes: formData.notes,
+        };
+
+        console.log(dataToSubmit);
     };
 
 
@@ -151,56 +186,63 @@ const Students = () => {
                     <div className={styles.students__search__select}>
                         <Select
                             name="status"
+                            value={filters.status}
+                            onChange={(selectedOption) => handleFiltersChange("status", selectedOption)}
                             options={productOptions}
-                            placeholder="Xolati bo'yicha"
-                            onChange={handleFilterChange}
-                            value={productOptions.find(option => option.value === filters.status)}
+                            placeholder="Ism yoki telefon"
+                            isClearable
                             required
                         />
                     </div>
                     <div className={styles.students__search__select}>
                         <Select
                             name="teacher"
+                            value={filters.teacher}
+                            onChange={(selectedOption) => handleFiltersChange("teacher", selectedOption)}
                             options={productOptions}
-                            placeholder="Ustozi bo'yicha"
-                            onChange={handleFilterChange}
-                            value={productOptions.find(option => option.value === filters.teacher)}
+                            placeholder="Kurs"
+                            isClearable
                             required
                         />
                     </div>
                     <div className={styles.students__search__select}>
                         <Select
                             name="course"
+                            value={filters.course}
+                            onChange={(selectedOption) => handleFiltersChange("course", selectedOption)}
                             options={productOptions}
-                            placeholder="Kursi bo'yicha"
-                            onChange={handleFilterChange}
-                            value={productOptions.find(option => option.value === filters.course)}
+                            placeholder="Talaba holati"
+                            isClearable
                             required
                         />
                     </div>
                     <div className={styles.students__search__select}>
                         <Select
                             name="day"
+                            value={filters.day}
+                            onChange={(selectedOption) => handleFiltersChange("day", selectedOption)}
                             options={productOptions}
-                            placeholder="Kunlari bo'yicha"
-                            onChange={handleFilterChange}
-                            value={productOptions.find(option => option.value === filters.day)}
+                            placeholder="Moliyaviy holati"
+                            isClearable
                             required
                         />
                     </div>
 
-                    <button className={styles.students__search__btn}>Filterlash</button>
+                    <button className={styles.students__search__btn} onClick={handleFilter}>
+                        Filterlash
+                    </button>
                 </div>
                 <div className={styles.students__items}>
                     <div className={styles.students__items__table}>
                         <div className={styles.students__items__table__header}>
-                            <b>Guruh</b>
-                            <b>O'qituvchi</b>
-                            <b>Kunlar</b>
-                            <b>Mashg'ulotlar sanalari</b>
-                            <b>Xonalar</b>
-                            <b>Talabalar</b>
-                            <b></b>
+                            <b>Ism</b>
+                            <b>Telefon</b>
+                            <b>Guruhlar</b>
+                            <b>	O'qituvchilar</b>
+                            <b>Balans</b>
+                            <span>
+                                <i className="fa-regular fa-envelope"></i>
+                            </span>
                         </div>
 
                         <div className={styles.students__items__table__body}>
@@ -222,6 +264,16 @@ const Students = () => {
                                         <p><i className="fa-solid fa-user-group"></i> {item.students}-ta</p>
 
                                         <span className={styles.icon__list}>
+                                            <button
+                                                className={styles.icon__list__item}
+                                            >
+                                                <i className="fa-solid fa-trash"></i>
+                                            </button>
+                                            <button
+                                                className={styles.icon__list__item}
+                                            >
+                                                <i className="fa-solid fa-trash"></i>
+                                            </button>
                                             <button
                                                 className={styles.icon__list__item}
                                             >
@@ -277,88 +329,78 @@ const Students = () => {
                 <div className={`${styles.students__register} ${addSGroup ? styles.registerAct : ""}`}>
                     <div style={{ display: addSGroup ? '' : 'none' }} className={styles.students__register__list}>
                         <div className={styles.students__register__list__header}>
-                            <p>Guruh qo'shish</p>
+                            <p>O`quvchi qo'shish</p>
                             <i onClick={() => setAddGroup(false)} className="fa-solid fa-x"></i>
-                        </div> <form className={styles.students__register__list__form} onSubmit={handleSubmit}>
-                            <label htmlFor="name">
-                                <p>Nomi</p>
+                        </div>
+                        <form className={styles.students__register__list__form} onSubmit={handleSubmit}>
+                            <label htmlFor="phone">
+                                <p>Telefon:</p>
                                 <input
                                     type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleInputChange}
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="firstName">
+                                <p>Ism:</p>
+                                <input
+                                    type="text"
+                                    name="firstName"
+                                    value={formData.firstName}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="lastName">
+                                <p>Familya:</p>
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    value={formData.lastName}
+                                    onChange={handleChange}
                                     required
                                 />
                             </label>
 
                             <label htmlFor="course">
-                                <p>Kurs tanlash</p>
+                                <p>Qaysi kursga ?:</p>
                                 <Select
                                     name="course"
+                                    value={formData.course}
+                                    onChange={(selectedOption) => handleSelectChange("course", selectedOption)}
                                     options={productOptions}
-                                    placeholder
-                                    value={productOptions.find(option => option.value === formData.course)}
-                                    onChange={(option) => handleSelectChange('course', option)}
+                                    placeholder="Select Course"
+                                    isClearable
                                     required
                                 />
                             </label>
 
-                            <label htmlFor="teacher">
-                                <p>Ustozni tanlang</p>
+                            <label htmlFor="group">
+                                <p>Qaysi guruhga ?:</p>
                                 <Select
-                                    name="teacher"
+                                    name="group"
+                                    value={formData.group}
+                                    onChange={(selectedOption) => handleSelectChange("group", selectedOption)}
                                     options={productOptions}
-                                    placeholder
-                                    value={productOptions.find(option => option.value === formData.teacher)}
-                                    onChange={(option) => handleSelectChange('teacher', option)}
+                                    placeholder="Select Group"
+                                    isClearable
                                     required
                                 />
                             </label>
 
-                            <label htmlFor="days">
-                                <p>Kunlar</p>
-                                <Select
-                                    name="days"
-                                    options={productOptions}
-                                    placeholder
-                                    value={productOptions.find(option => option.value === formData.days)}
-                                    onChange={(option) => handleSelectChange('days', option)}
-                                    required
-                                />
-                            </label>
-
-                            <label htmlFor="room">
-                                <p>Xonani tanlang</p>
-                                <Select
-                                    name="room"
-                                    options={productOptions}
-                                    placeholder
-                                    value={productOptions.find(option => option.value === formData.room)}
-                                    onChange={(option) => handleSelectChange('room', option)}
-                                    required
-                                />
-                            </label>
-
-                            <label htmlFor="startTime">
-                                <p>Darsning boshlanish vaqti</p>
-                                <input
-                                    type="time"
-                                    name="startTime"
-                                    value={formData.startTime}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                            </label>
-
-                            <label htmlFor="startDate">
-                                <p>Guruhni boshlanish sanasi</p>
-                                <input
-                                    type="date"
-                                    name="startDate"
-                                    value={formData.startDate}
-                                    onChange={handleInputChange}
-                                    required
-                                />
+                            <label htmlFor="notes">
+                                <p>Izoh:</p>
+                                <textarea
+                                    name="notes"
+                                    value={formData.notes}
+                                    onChange={handleChange}
+                                    cols="30"
+                                    rows="10"
+                                ></textarea>
                             </label>
 
                             <button type="submit">Yuborish</button>
