@@ -341,7 +341,7 @@ const Students = () => {
                                     <div key={key} className={styles.students__items__table__body__item}>
                                         <p
                                             onClick={() => {
-                                                router.push(`/group-detail`);
+                                                router.push(`/student-detail`);
                                             }}
                                         >
                                             <i className="fa-solid fa-user"></i>
@@ -354,7 +354,13 @@ const Students = () => {
                                             </a>
                                         </p>
                                         <div className={styles.students__items__table__body__item__group}>
-                                            <b>{item.group}</b>
+                                            <b
+                                                onClick={() => {
+                                                    router.push(`/group-detail`);
+                                                }}
+                                            >
+                                                {item.group}
+                                            </b>
                                             <p className={styles.element}><span>Qo'shildi:</span> {item.activateDate}</p>
                                             <p className={styles.element}><span>Aktivlashtrildi:</span> {item.startedDate}</p>
                                             <p className={styles.element}><span>Chiqarildi :</span> -</p>

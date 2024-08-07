@@ -484,6 +484,7 @@
 
         .header {
             left: 0;
+            z-index: 999;
             height: 70px;
 
             &__hamburger {

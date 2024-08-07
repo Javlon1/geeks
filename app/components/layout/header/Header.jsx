@@ -95,7 +95,10 @@ const Header = () => {
             {/* sidebar start */}
             <aside className={`${styles.sidebar} ${ham ? styles.actHam : ""}`}>
                 <div className={styles.sidebar__top}>
-                    <Link href={'/'}>
+                    <Link
+                        href={'/'}
+                        onClick={() => setham(false)}
+                    >
                         <Image
                             src={logo}
                             width={150}
@@ -164,6 +167,7 @@ const Header = () => {
                         </button>
                     </form>
                 </div>
+
                 <div className={styles.header__list}>
                     <div className={styles.header__list__item}>
                         <span onClick={() => {
@@ -198,6 +202,7 @@ const Header = () => {
                             </li>
                         </ul>
                     </div>
+
                     <div className={styles.header__list__item}>
                         <span onClick={() => {
                             setNotification(!notification)
@@ -265,39 +270,88 @@ const Header = () => {
                         </form>
                     </div>
                     <div className={styles.header__list}>
-                        <span onClick={() => setElement(!element)} className={styles.header__list__span}>
-                            <i className="fa-solid fa-plus"></i>
-                        </span>
-                        <ul className={`${styles.header__list__elements} ${element ? styles.elementsAct : ""}`}>
-                            <li
-                                className={styles.header__list__elements__item}
-                                onClick={() => {
-                                    setElement(false)
-                                    setAddStudent(true)
-                                    setAddPayment(false)
-                                    setProfile(false)
-                                }}
-                            >
-                                <i className='fa-solid fa-plus'></i>
-                                <p>Yangi talaba</p>
-                            </li>
-                            <li
-                                className={styles.header__list__elements__item}
-                                onClick={() => {
-                                    setElement(false)
-                                    setAddPayment(true)
-                                    setAddStudent(false)
-                                    setProfile(false)
-                                }}
-                            >
-                                <i className="fa-solid fa-money-bill-1-wave"></i>
-                                <p>To'lov</p>
-                            </li>
-                        </ul>
+                        <div className={styles.header__list__item}>
+                            <span onClick={() => {
+                                setElement(!element)
+                                setNotification(false)
+                                setUser(false)
+                            }} className={styles.header__list__item__span}>
+                                <i className="fa-solid fa-plus"></i>
+                            </span>
+                            <ul className={`${styles.header__list__item__elements} ${element ? styles.elementsAct : ""}`}>
+                                <li
+                                    className={styles.header__list__item__elements__item}
+                                    onClick={() => {
+                                        setElement(false)
+                                        setAddStudent(true)
+                                        setAddPayment(false)
+                                    }}
+                                >
+                                    <i className='fa-solid fa-plus'></i>
+                                    <p>Yangi talaba</p>
+                                </li>
+                                <li
+                                    className={styles.header__list__item__elements__item}
+                                    onClick={() => {
+                                        setElement(false)
+                                        setAddPayment(true)
+                                        setAddStudent(false)
+                                    }}
+                                >
+                                    <i className="fa-solid fa-money-bill-1-wave"></i>
+                                    <p>To'lov</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className={styles.header__list__item}>
+                            <span onClick={() => {
+                                setNotification(!notification)
+                                setElement(false)
+                                setUser(false)
+                            }} className={styles.header__list__item__span}>
+                                <i className="fa-solid fa-bell"></i>
+                            </span>
+                            <div className={`${styles.header__list__item__elements} ${notification ? styles.elementsAct : ""}`}>
+                                <div className={styles.header__list__item__elements__header}>
+                                    <p></p>
+                                    <p>Jony</p>
+                                </div>
+                                <div className={styles.header__list__item__elements__body}>
+                                    <p className={styles.text}>Lorem ipsum dolor sit amet.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={styles.header__list__item}>
+                            <span onClick={() => {
+                                setUser(!user)
+                                setElement(false)
+                                setNotification(false)
+                            }} className={styles.header__list__item__span}>
+                                <i className="fa-solid fa-user"></i>
+                            </span>
+                            <div className={`${styles.header__list__item__elements} ${user ? styles.elementsAct : ""}`}>
+                                <div className={styles.header__list__item__elements__header}>
+                                    <Image
+                                        width={40}
+                                        height={40}
+                                        src={userImg}
+                                        alt='user'
+                                    />
+                                    <p>Mukhammadjonov Javlon</p>
+                                </div>
+                                <div className={styles.header__list__item__elements__body}>
+                                    <button>
+                                        <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </header>
+
             <div className={`${styles.header__register} ${addStudent || addPayment ? styles.registerAct : ""}`}>
                 <div style={{ display: addStudent ? '' : 'none' }} className={styles.header__register__list}>
                     <div className={styles.header__register__list__header}>
