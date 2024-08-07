@@ -54,7 +54,9 @@
             &__header {
                 width: 100%;
                 display: grid;
-                grid-template-columns: repeat(7, 1fr);
+                grid-template-columns: repeat(6, 1fr);
+                margin-bottom: 1rem;
+                position: relative;
 
                 b {
                     padding: 0.5rem;
@@ -65,7 +67,29 @@
                     text-wrap: nowrap;
                 }
 
-                margin-bottom: 1rem;
+                span {
+                    position: absolute;
+                    right: 0;
+                    width: 80px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    text-align: left;
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                    color: $green;
+                    cursor: pointer;
+                    text-wrap: nowrap;
+                    border: 1px solid $gray;
+                    border-radius: $radius;
+                    transition: $transition;
+
+                    &:hover {
+                        transform: scale(.95);
+                    }
+                }
             }
 
             &__body {
@@ -76,34 +100,49 @@
 
                 &__item {
                     display: grid;
-                    grid-template-columns: repeat(7, 1fr);
+                    grid-template-columns: repeat(6, 1fr);
                     align-items: center;
                     gap: 10px;
                     background-color: $white;
                     border-radius: $radius;
-                    padding: 0.2rem 1rem;
+                    padding: .3rem 1rem;
                     transition: $transition;
 
-                    &__date {
+                    &__group {
                         display: flex;
                         flex-direction: column;
-                        gap: 5px;
-                        padding: 0.5rem 0;
+                        gap: 2px;
+                        padding: 0.2rem 0;
 
                         b {
-                            font-size: 1rem;
-                            font-weight: 400;
+                            font-size: .9rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            margin-bottom: .2rem;
                         }
 
-                        span {
-                            font-size: .8rem;
+                        .element {
+                            display: flex;
+                            align-items: center;
+                            gap: 2px;
+                            padding: 0;
+                            font-size: .75rem;
                             font-weight: 500;
+                            color: $gray;
 
-                            i {
-                                color: $blue;
-                                margin-right: 2px;
+                            span {
+                                width: auto;
+                                height: auto;
+                                font-weight: 600;
+                                color: $dark-gray;
                             }
                         }
+                    }
+
+                    &__teacher {
+                        color: $black;
+                        font-weight: 600;
+                        cursor: pointer;
                     }
 
                     p {
@@ -167,7 +206,7 @@
                             width: 30px;
                             height: 30px;
                             border: 0;
-                            background-color: transparent;
+                            background-color: $green;
                             cursor: pointer;
                             color: $white;
                             font-size: 0.8rem;

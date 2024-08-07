@@ -9,49 +9,59 @@ import Select from "react-select";
 
 const data = [
     {
-        group: 'Back-end',
-        teacher: 'John Doe',
-        days: 'Toq kunlar',
-        date: '2024-08-04',
-        rooms: 'Room 101',
-        students: 25,
-        startTime: '09:00',
+        id: 1,
+        firstName: "Javlon",
+        lastName: "Mukhammadjonov",
+        phone: "+998905251243",
+        group: "Front-end",
+        activateDate: "03.05.2023",
+        startedDate: "05.07.2023",
+        teacher: "Mukhammadjonov Javlon",
+        balance: "5000000"
     },
     {
-        group: 'Front-end',
-        teacher: 'Jane Smith',
-        days: 'Juft kunlar',
-        date: '2024-08-05',
-        rooms: 'Room 202',
-        students: 30,
-        startTime: '10:00',
+        id: 2,
+        firstName: "Akmal",
+        lastName: "Karimov",
+        phone: "+998903451267",
+        group: "Back-end",
+        activateDate: "01.04.2023",
+        startedDate: "02.06.2023",
+        teacher: "Saidov Timur",
+        balance: "3500000"
     },
     {
-        group: 'Back-end',
-        teacher: 'Emily Johnson',
-        days: 'Juft kunlar',
-        date: '2024-08-06',
-        rooms: 'Room 303',
-        students: 20,
-        startTime: '11:00',
+        id: 3,
+        firstName: "Dilnoza",
+        lastName: "Akhmedova",
+        phone: "+998933211245",
+        group: "Data Science",
+        activateDate: "15.05.2023",
+        startedDate: "18.07.2023",
+        teacher: "Sharipova Umida",
+        balance: "4200000"
     },
     {
-        group: 'Front-end',
-        teacher: 'Michael Brown',
-        days: 'Toq kunlar',
-        date: '2024-08-07',
-        rooms: 'Room 404',
-        students: 28,
-        startTime: '01:00',
+        id: 4,
+        firstName: "Rustam",
+        lastName: "Abdullayev",
+        phone: "+998912341234",
+        group: "Cybersecurity",
+        activateDate: "20.06.2023",
+        startedDate: "25.08.2023",
+        teacher: "Nematov Aziz",
+        balance: "6000000"
     },
     {
-        group: 'Back-end',
-        teacher: 'Jessica Davis',
-        days: 'Juft kunlar',
-        date: '2024-08-08',
-        rooms: 'Room 505',
-        students: 22,
-        startTime: '02:00',
+        id: 5,
+        firstName: "Madina",
+        lastName: "Ismailova",
+        phone: "+998914561238",
+        group: "Mobile Development",
+        activateDate: "10.07.2023",
+        startedDate: "12.09.2023",
+        teacher: "Rahimov Davron",
+        balance: "4800000"
     }
 ];
 
@@ -59,23 +69,30 @@ const data = [
 const Students = () => {
     const router = useRouter();
     const { lan } = useContext(Context);
+
     const [loader, setLoader] = useState(false);
     const [itemsPerPage, setItemsPerPage] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
     const [addSGroup, setAddGroup] = useState(false);
-    const [paymentData, setPaymentData] = useState([{ id: 1, name: 'Jony', }, { id: 2, name: 'Alex', }, { id: 3, name: 'Jasur', }, { id: 4, name: 'Saidjalol', }]);
+    const [addPayment, setAddPayment] = useState(false);
+    const [editStudent, setEditStudent] = useState(false);
+    const [send, setSend] = useState(false);
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
+    const [paymentData, setPaymentData] = useState([
+        { id: 1, name: 'Jony' },
+        { id: 2, name: 'Alex' },
+        { id: 3, name: 'Jasur' },
+        { id: 4, name: 'Saidjalol' }
+    ]);
 
-    const handleNextPage = () => {
-        setCurrentPage((prevPage) => prevPage + 1);
-    };
-
-    const handlePrevPage = () => {
-        setCurrentPage((prevPage) => prevPage - 1);
-    };
+    const [selectedPayment, setSelectedPayment] = useState(null);
+    const [formPaymentData, setFormPaymentData] = useState({
+        student: '',
+        paymentMethod: '',
+        amount: '',
+        date: '',
+        comment: ''
+    });
 
     const productOptions = paymentData.map((item) => ({
         value: item.id,
@@ -108,6 +125,15 @@ const Students = () => {
         day: null,
     });
 
+    const [formData, setFormData] = useState({
+        phone: '',
+        firstName: '',
+        lastName: '',
+        course: null,
+        group: null,
+        notes: '',
+    });
+
     const handleFiltersChange = (name, selectedOption) => {
         setFilters({
             ...filters,
@@ -115,6 +141,33 @@ const Students = () => {
         });
     };
 
+    const handleProductChange = (selectedOption) => {
+        setSelectedPayment(selectedOption);
+        setFormPaymentData({
+            ...formPaymentData,
+            student: selectedOption ? selectedOption.value : ''
+        });
+    };
+
+    const handlePaymentChange = (e) => {
+        const { name, value } = e.target;
+        setFormPaymentData({
+            ...formPaymentData,
+            [name]: value
+        });
+    };
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const handleNextPage = () => {
+        setCurrentPage((prevPage) => prevPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage((prevPage) => prevPage - 1);
+    };
 
     const handleFilter = () => {
         const appliedFilters = {
@@ -124,27 +177,16 @@ const Students = () => {
             day: filters.day ? filters.day.value : null,
         };
 
-        console.log("Applied Filters:", appliedFilters);
+        console.log('Applied Filters:', appliedFilters);
     };
-
-    const [formData, setFormData] = useState({
-        phone: "",
-        firstName: "",
-        lastName: "",
-        course: null,
-        group: null,
-        notes: "",
-    });
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: name === "phone" ? formatPhoneNumber(value) : value,
+            [name]: name === 'phone' ? formatPhoneNumber(value) : value,
         }));
     };
-
 
     const handleSelectChange = (name, selectedOption) => {
         setFormData({
@@ -152,8 +194,6 @@ const Students = () => {
             [name]: selectedOption,
         });
     };
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -170,15 +210,61 @@ const Students = () => {
         console.log(dataToSubmit);
     };
 
+    const handleEditSubmit = (e) => {
+        e.preventDefault();
 
+        const dataToSubmit = {
+            phone: formData.phone,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            status: filters.status ? filters.status.value : null,
+            birthDate: formData.birthDate || '',
+            notes: formData.notes,
+        };
+
+        console.log('Edit Data:', dataToSubmit);
+    };
+
+    const handlePaymentSubmit = async (e) => {
+        e.preventDefault();
+        console.log(formPaymentData);
+        setAddPayment(false);
+        setAddGroup(false);
+        setSelectedPayment(null);
+        setFormPaymentData({
+            student: '',
+            paymentMethod: '',
+            amount: '',
+            date: '',
+            comment: ''
+        });
+    };
+
+    const handleSMSSend = (e) => {
+        e.preventDefault();
+        console.log('Sending SMS:', {
+            sender: 'Geeks Education',
+            student: selectedPayment ? selectedPayment.label : 'All',
+            message: formPaymentData.comment,
+        });
+        setSend(false);
+        setSelectedPayment(null);
+        setFormPaymentData({
+            ...formPaymentData,
+            comment: ''
+        });
+    };
 
     return (
         <LeftIntro>
             <div className={styles.students}>
                 <div
-                    className={`${styles.opacity} ${addSGroup ? styles.opacityAct : ""}`}
+                    className={`${styles.opacity} ${addSGroup || addPayment || editStudent || send ? styles.opacityAct : ""}`}
                     onClick={() => {
                         setAddGroup(false)
+                        setAddPayment(false)
+                        setEditStudent(false)
+                        setSend(false)
                     }}
                 ></div>
                 <button onClick={() => setAddGroup(true)} className={styles.students__btn} type='button'>Yangisnini qo'shish</button>
@@ -240,7 +326,11 @@ const Students = () => {
                             <b>Guruhlar</b>
                             <b>	O'qituvchilar</b>
                             <b>Balans</b>
-                            <span>
+                            <span
+                                onClick={() => {
+                                    setSend(true)
+                                }}
+                            >
                                 <i className="fa-regular fa-envelope"></i>
                             </span>
                         </div>
@@ -253,26 +343,41 @@ const Students = () => {
                                             onClick={() => {
                                                 router.push(`/group-detail`);
                                             }}
-                                        >{item.group}</p>
-                                        <p><i className="fa-solid fa-chalkboard-user"></i> {item.teacher}</p>
-                                        <div className={styles.students__items__table__body__item__date}>
-                                            <b>{item.days}</b>
-                                            <span><i className="fa-solid fa-clock"></i> {item.startTime}</span>
+                                        >
+                                            <i className="fa-solid fa-user"></i>
+                                            {item.lastName} {item.firstName}
+                                        </p>
+                                        <p>
+                                            <a href={`tel:${item.phone}`}>
+                                                <i className="fa-solid fa-phone"></i>
+                                                {item.phone}
+                                            </a>
+                                        </p>
+                                        <div className={styles.students__items__table__body__item__group}>
+                                            <b>{item.group}</b>
+                                            <p className={styles.element}><span>Qo'shildi:</span> {item.activateDate}</p>
+                                            <p className={styles.element}><span>Aktivlashtrildi:</span> {item.startedDate}</p>
+                                            <p className={styles.element}><span>Chiqarildi :</span> -</p>
                                         </div>
-                                        <p><i className="fa-solid fa-calendar-days"></i> {new Date(item.date).toLocaleDateString()}</p>
-                                        <p>{item.rooms}</p>
-                                        <p><i className="fa-solid fa-user-group"></i> {item.students}-ta</p>
+                                        <p className={styles.students__items__table__body__item__teacher}><i className="fa-solid fa-chalkboard-user"></i> {item.teacher}</p>
+                                        <p>{item.balance}</p>
 
                                         <span className={styles.icon__list}>
                                             <button
+                                                onClick={() => {
+                                                    setEditStudent(true);
+                                                }}
                                                 className={styles.icon__list__item}
                                             >
-                                                <i className="fa-solid fa-trash"></i>
+                                                <i className="fa-solid fa-pen-to-square"></i>
                                             </button>
                                             <button
+                                                onClick={() => {
+                                                    setAddPayment(true);
+                                                }}
                                                 className={styles.icon__list__item}
                                             >
-                                                <i className="fa-solid fa-trash"></i>
+                                                <i className="fa-solid fa-dollar-sign"></i>
                                             </button>
                                             <button
                                                 className={styles.icon__list__item}
@@ -326,13 +431,22 @@ const Students = () => {
                     </button>
                 </div>
 
-                <div className={`${styles.students__register} ${addSGroup ? styles.registerAct : ""}`}>
-                    <div style={{ display: addSGroup ? '' : 'none' }} className={styles.students__register__list}>
+                <div
+                    className={`${styles.students__register} ${addSGroup || addPayment || editStudent || send ? styles.registerAct : ''
+                        }`}
+                >
+                    <div
+                        style={{ display: addSGroup ? '' : 'none' }}
+                        className={styles.students__register__list}
+                    >
                         <div className={styles.students__register__list__header}>
                             <p>O`quvchi qo'shish</p>
                             <i onClick={() => setAddGroup(false)} className="fa-solid fa-x"></i>
                         </div>
-                        <form className={styles.students__register__list__form} onSubmit={handleSubmit}>
+                        <form
+                            className={styles.students__register__list__form}
+                            onSubmit={handleSubmit}
+                        >
                             <label htmlFor="phone">
                                 <p>Telefon:</p>
                                 <input
@@ -371,9 +485,11 @@ const Students = () => {
                                 <Select
                                     name="course"
                                     value={formData.course}
-                                    onChange={(selectedOption) => handleSelectChange("course", selectedOption)}
+                                    onChange={(selectedOption) =>
+                                        handleSelectChange('course', selectedOption)
+                                    }
                                     options={productOptions}
-                                    placeholder="Select Course"
+                                    placeholder
                                     isClearable
                                     required
                                 />
@@ -384,9 +500,11 @@ const Students = () => {
                                 <Select
                                     name="group"
                                     value={formData.group}
-                                    onChange={(selectedOption) => handleSelectChange("group", selectedOption)}
+                                    onChange={(selectedOption) =>
+                                        handleSelectChange('group', selectedOption)
+                                    }
                                     options={productOptions}
-                                    placeholder="Select Group"
+                                    placeholder
                                     isClearable
                                     required
                                 />
@@ -401,6 +519,233 @@ const Students = () => {
                                     cols="30"
                                     rows="10"
                                 ></textarea>
+                            </label>
+
+                            <button type="submit">Yuborish</button>
+                        </form>
+                    </div>
+
+                    <div
+                        style={{ display: editStudent ? '' : 'none' }}
+                        className={styles.students__register__list}
+                    >
+                        <div className={styles.students__register__list__header}>
+                            <p>O`quvchini tahrirlash</p>
+                            <i onClick={() => setEditStudent(false)} className="fa-solid fa-x"></i>
+                        </div>
+                        <form
+                            className={styles.students__register__list__form}
+                            onSubmit={handleEditSubmit}
+                        >
+                            <label htmlFor="phone">
+                                <p>Telefon:</p>
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="firstName">
+                                <p>Ism:</p>
+                                <input
+                                    type="text"
+                                    name="firstName"
+                                    value={formData.firstName}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="lastName">
+                                <p>Familya:</p>
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    value={formData.lastName}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="status">
+                                <p>Status:</p>
+                                <Select
+                                    name="status"
+                                    value={filters.status}
+                                    onChange={(selectedOption) =>
+                                        handleFiltersChange('status', selectedOption)
+                                    }
+                                    options={productOptions}
+                                    placeholder
+                                    isClearable
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="birthDate">
+                                <p>Tug'ilgan sana:</p>
+                                <input
+                                    type="date"
+                                    name="birthDate"
+                                    value={formData.birthDate || ''}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="notes">
+                                <p>Izoh:</p>
+                                <textarea
+                                    name="notes"
+                                    value={formData.notes}
+                                    onChange={handleChange}
+                                    cols="30"
+                                    rows="10"
+                                ></textarea>
+                            </label>
+
+                            <button type="submit">Yuborish</button>
+                        </form>
+                    </div>
+
+                    <div
+                        style={{ display: addPayment ? '' : 'none' }}
+                        className={styles.students__register__list}
+                    >
+                        <div className={styles.students__register__list__header}>
+                            <p>To'lov qo'shish</p>
+                            <i onClick={() => setAddPayment(false)} className="fa-solid fa-x"></i>
+                        </div>
+                        <form
+                            className={styles.students__register__list__form}
+                            onSubmit={handlePaymentSubmit}
+                        >
+                            <label htmlFor="student">
+                                <p>Talaba:</p>
+                                <Select
+                                    options={productOptions}
+                                    placeholder
+                                    value={selectedPayment}
+                                    onChange={handleProductChange}
+                                    isClearable
+                                    required
+                                />
+                            </label>
+
+                            <span>
+                                <p>To'lov usuli:</p>
+                                <label htmlFor="cash">
+                                    <input
+                                        id="cash"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="Naqd pul"
+                                        required
+                                        checked={formPaymentData.paymentMethod === 'Naqd pul'}
+                                        onChange={handlePaymentChange}
+                                    />
+                                    <p>Naqd pul</p>
+                                </label>
+                                <label htmlFor="card">
+                                    <input
+                                        id="card"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="Plastik kartasi"
+                                        required
+                                        checked={formPaymentData.paymentMethod === 'Plastik kartasi'}
+                                        onChange={handlePaymentChange}
+                                    />
+                                    <p>Plastik kartasi</p>
+                                </label>
+                                <label htmlFor="bank">
+                                    <input
+                                        id="bank"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="Bank hisobi"
+                                        required
+                                        checked={formPaymentData.paymentMethod === 'Bank hisobi'}
+                                        onChange={handlePaymentChange}
+                                    />
+                                    <p>Bank hisobi</p>
+                                </label>
+                            </span>
+
+                            <label htmlFor="amount">
+                                <p>Miqdor:</p>
+                                <input
+                                    id="amount"
+                                    name="amount"
+                                    type="text"
+                                    required
+                                    value={formPaymentData.amount}
+                                    onChange={handlePaymentChange}
+                                />
+                            </label>
+
+                            <label htmlFor="date">
+                                <p>Sana:</p>
+                                <input
+                                    id="date"
+                                    name="date"
+                                    type="date"
+                                    required
+                                    value={formPaymentData.date}
+                                    onChange={handlePaymentChange}
+                                />
+                            </label>
+
+                            <label htmlFor="comment">
+                                <p>Izoh:</p>
+                                <textarea
+                                    id="comment"
+                                    name="comment"
+                                    value={formPaymentData.comment}
+                                    onChange={handlePaymentChange}
+                                />
+                            </label>
+
+                            <button type="submit">Yuborish</button>
+                        </form>
+                    </div>
+
+                    <div
+                        style={{ display: send ? '' : 'none' }}
+                        className={styles.students__register__list}
+                    >
+                        <div className={styles.students__register__list__header}>
+                            <p>Talabalarga SMS yuborish</p>
+                            <i onClick={() => setSend(false)} className="fa-solid fa-x"></i>
+                        </div>
+                        <form
+                            className={styles.students__register__list__form}
+                            onSubmit={handleSMSSend}
+                        >
+                            <p>Yuboruvchi: Geeks Education</p>
+                            <label htmlFor="student">
+                                <p>Talaba:</p>
+                                <Select
+                                    options={productOptions}
+                                    placeholder
+                                    value={selectedPayment}
+                                    onChange={handleProductChange}
+                                    isClearable
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="comment">
+                                <p>Izoh:</p>
+                                <textarea
+                                    id="comment"
+                                    name="comment"
+                                    value={formPaymentData.comment}
+                                    onChange={handlePaymentChange}
+                                />
                             </label>
 
                             <button type="submit">Yuborish</button>
