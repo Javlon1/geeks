@@ -275,6 +275,7 @@ const Header = () => {
                                 setElement(!element)
                                 setNotification(false)
                                 setUser(false)
+
                             }} className={styles.header__list__item__span}>
                                 <i className="fa-solid fa-plus"></i>
                             </span>
@@ -285,6 +286,7 @@ const Header = () => {
                                         setElement(false)
                                         setAddStudent(true)
                                         setAddPayment(false)
+                                        setProfile(false)
                                     }}
                                 >
                                     <i className='fa-solid fa-plus'></i>
@@ -296,6 +298,7 @@ const Header = () => {
                                         setElement(false)
                                         setAddPayment(true)
                                         setAddStudent(false)
+                                        setProfile(false)
                                     }}
                                 >
                                     <i className="fa-solid fa-money-bill-1-wave"></i>
@@ -328,6 +331,7 @@ const Header = () => {
                                 setUser(!user)
                                 setElement(false)
                                 setNotification(false)
+
                             }} className={styles.header__list__item__span}>
                                 <i className="fa-solid fa-user"></i>
                             </span>

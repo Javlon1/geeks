@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Head from 'next/head'
 import AllIntro from '@/app/components/ui/AllIntro/AllIntro';
+import Detail from '@/app/components/screens/Students/Detail/Detail';
 
 const StudentDetail = () => {
 
@@ -10,11 +11,11 @@ const StudentDetail = () => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
 
-                <title>StudentDetail</title>
+                <title>O`quvchi profili</title>
             </Head>
 
-            <AllIntro text="StudentDetail" />
-            <h1>StudentDetail</h1>
+            <AllIntro text="O`quvchi profili" />
+            <Detail />
         </>
     )
 }
