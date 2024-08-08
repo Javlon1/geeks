@@ -17,6 +17,8 @@ const Header = () => {
     const [addStudent, setAddStudent] = useState(false);
     const [addPayment, setAddPayment] = useState(false);
     const [profile, setProfile] = useState(false);
+    const [paymentHeader, setPaymentHeader] = useState(false);
+    const [settingsHeader, setSettingsHeader] = useState(false);
     const { pathname } = useRouter();
     const [headerData] = useState([
         { id: 1, link: '/', nav: 'Statitika', icon: 'fa-solid fa-chart-pie' },
@@ -26,6 +28,65 @@ const Header = () => {
         { id: 5, link: '/students', nav: 'O`quvchilar', icon: 'fa-solid fa-graduation-cap' },
     ]);
 
+    const [paymentHeaderData] = useState([
+        {
+            id: 1,
+            link: "/all-payments",
+            nav: "Barcha to'lovlar",
+            icon: "fa-solid fa-money-bill-1",
+        },
+        {
+            id: 2,
+            link: "/take-off",
+            nav: "Yechib olish",
+            icon: "fa-solid fa-credit-card",
+        },
+        {
+            id: 3,
+            link: '/expenses',
+            nav: 'Xarajatlar',
+            icon: 'fa-solid fa-chart-pie'
+        },
+        {
+            id: 4,
+            link: '/salary',
+            nav: 'Ish haqi',
+            icon: 'fa-regular fa-clipboard'
+        },
+        {
+            id: 5,
+            link: '/debtors',
+            nav: 'Qarzdorlar',
+            icon: 'fa-solid fa-triangle-exclamation'
+        },
+    ]);
+
+    const [settingsHeaderData] = useState([
+        {
+            id: 1,
+            link: "/employees",
+            nav: "Xodimlar",
+            icon: "fa-solid fa-money-bill-1",
+        },
+        {
+            id: 2,
+            link: "/courses",
+            nav: "Kurslar",
+            icon: "fa-solid fa-layer-group",
+        },
+        {
+            id: 3,
+            link: '/rooms',
+            nav: 'Xonalar',
+            icon: 'fa-solid fa-chart-pie'
+        },
+        {
+            id: 4,
+            link: '/left-group',
+            nav: 'Guruxni tark etganlar',
+            icon: 'fa-regular fa-clipboard'
+        }
+    ]);
 
     const [paymentData, setPaymentData] = useState([{ id: 1, name: 'Jony', }, { id: 2, name: 'Alex', }, { id: 3, name: 'Jasur', }, { id: 4, name: 'Saidjalol', }]);
     const [selectedPayment, setSelectedPayment] = useState(null);
@@ -141,6 +202,70 @@ const Header = () => {
                                 </Link>
                             ))
                         }
+                    </ul>
+                    <ul className={styles.sidebar__nav__list}>
+                        {close ? (
+                            <b>
+                                <i className="fa-solid fa-ellipsis"></i>
+                            </b>
+                        ) : (
+                            <b onClick={() => setPaymentHeader(!paymentHeader)} className={styles.b}>
+                                To'lovlar
+                                <p>
+                                    <i
+                                        className={`fa-solid ${!paymentHeader ? "fa-angle-up" : "fa-angle-down"
+                                            }`}
+                                    ></i>
+                                </p>
+                            </b>
+                        )}
+                        {paymentHeader && (paymentHeaderData?.map((item) => (
+                            <Link
+                                key={item.id}
+                                className={`${pathname === item.link ? styles.active : ""}`}
+                                href={item.link}
+                                onClick={() => setham(false)}
+                            >
+                                <li>
+                                    <i className={item.icon}></i>
+                                    <p>
+                                        {item.nav}
+                                    </p>
+                                </li>
+                            </Link>
+                        )))}
+                    </ul>
+                    <ul className={styles.sidebar__nav__list}>
+                        {close ? (
+                            <b>
+                                <i className="fa-solid fa-ellipsis"></i>
+                            </b>
+                        ) : (
+                            <b onClick={() => setSettingsHeader(!settingsHeader)} className={styles.b}>
+                                Sozlamalar
+                                <p>
+                                    <i
+                                        className={`fa-solid ${!settingsHeader ? "fa-angle-up" : "fa-angle-down"
+                                            }`}
+                                    ></i>
+                                </p>
+                            </b>
+                        )}
+                        {settingsHeader && (settingsHeaderData?.map((item) => (
+                            <Link
+                                key={item.id}
+                                className={`${pathname === item.link ? styles.active : ""}`}
+                                href={item.link}
+                                onClick={() => setham(false)}
+                            >
+                                <li>
+                                    <i className={item.icon}></i>
+                                    <p>
+                                        {item.nav}
+                                    </p>
+                                </li>
+                            </Link>
+                        )))}
                     </ul>
                 </nav>
                 {/* navbar end */}

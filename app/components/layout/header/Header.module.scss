@@ -15,8 +15,16 @@
         background-color: $white;
         box-shadow: 0 0 5px rgba(0, 0, 0, .1);
         transition: all .2s;
+        overflow-y: scroll;
+        height: 100vh;
+        padding-bottom: 2rem;
 
         &__top {
+            position: sticky;
+            top: 0;
+            background-color: $white;
+            z-index: 99;
+
             .x {
                 display: none;
             }
@@ -88,6 +96,33 @@
                 justify-content: space-between;
                 flex-direction: column;
                 gap: 20px;
+
+                b {
+                    margin-top: .5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .b {
+                    margin-top: .5rem;
+                    color: $black;
+                    padding: .5rem 1rem;
+                    font-weight: 500;
+                    font-size: 0.9rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    cursor: pointer;
+
+                    p {
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
 
                 a {
                     padding: .5rem 2rem;
@@ -590,16 +625,14 @@
 
 .active {
     transition: $transition;
-    width: 30% !important;
-    background: linear-gradient(90deg, #ACA9FF 0%, rgba(172, 169, 255, 0) 91.25%);
-
+    background: linear-gradient(90deg, #ACA9FF 0%, rgba(172, 169, 255, 0) 80%);
 
     li {
         color: $purple !important;
     }
 
     &:hover {
-        background: linear-gradient(90deg, #ACA9FF 0%, rgba(172, 169, 255, 0) 91.25%) !important;
+        background: linear-gradient(90deg, #ACA9FF 0%, rgba(172, 169, 255, 0) 80%) !important;
     }
 }
 

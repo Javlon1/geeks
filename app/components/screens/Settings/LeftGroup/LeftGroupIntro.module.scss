@@ -1,0 +1,363 @@
+@import "../../../../assets/variables";
+
+.leftGroupIntro {
+    position: relative;
+
+    &__btn {
+        top: -3rem;
+        right: 0;
+        position: absolute;
+        padding: 0.5rem 1rem;
+        font-size: .9rem;
+        border: 0;
+        background-color: $green;
+        border-radius: $radius;
+        color: $white;
+        cursor: pointer;
+    }
+
+    &__search {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+
+        &__select {
+            min-width: 200px;
+            flex: 1;
+        }
+
+        &__btn {
+            border: 0;
+            width: 150px;
+            height: 38px;
+            background-color: $blue;
+            border-radius: $radius;
+            color: $white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+
+    &__items {
+        width: 100%;
+        padding: 0 1rem;
+        overflow-x: auto;
+
+        &__table {
+            min-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            &__header {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                margin-bottom: 1rem;
+                position: relative;
+
+                b {
+                    padding: 0.5rem;
+                    text-align: left;
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    color: $dark-gray;
+                    text-wrap: nowrap;
+                }
+
+                span {
+                    position: absolute;
+                    right: 0;
+                    width: 80px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    text-align: left;
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                    color: $green;
+                    cursor: pointer;
+                    text-wrap: nowrap;
+                    border: 1px solid $gray;
+                    border-radius: $radius;
+                    transition: $transition;
+
+                    &:hover {
+                        transform: scale(.95);
+                    }
+                }
+            }
+
+            &__body {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                &__item {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    align-items: center;
+                    gap: 10px;
+                    background-color: $white;
+                    border-radius: $radius;
+                    padding: .3rem 1rem;
+                    transition: $transition;
+
+                    p {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 0.8rem .5rem;
+                        text-align: left;
+                        font-size: 1rem;
+                        color: $black;
+
+                        i {
+                            font-size: 1.1rem;
+                            color: $blue;
+                        }
+
+                        a {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            color: $black;
+                            text-wrap: nowrap;
+                            font-weight: 600;
+
+                            &:hover {
+                                i {
+                                    animation: bounce 1.5s ease-in-out;
+                                }
+                            }
+                        }
+
+                        span {
+                            width: 160px;
+                            height: 40px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: $radius;
+                            color: $white;
+                        }
+                    }
+
+                    &:hover {
+                        transform: scale(1);
+                        background-color: $white;
+                        box-shadow: 1px 17px 44px 0px #03022912;
+                    }
+                }
+
+                .skeleton__list {
+                    &__item {
+                        @include skeleton;
+                    }
+                }
+            }
+        }
+    }
+
+
+    &__pagination {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: end;
+        gap: 5px;
+
+        &__btn,
+        &__items {
+            width: 35px;
+            height: 35px;
+            background: 0;
+            border: 1px solid #dbdbdb;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+
+            &:hover {
+                background-color: $blue;
+                color: $white;
+            }
+        }
+    }
+
+    &__register {
+        width: 300px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: $white;
+        box-shadow: $shadow;
+        padding: 1rem;
+        transform: translateX(100%);
+        transition: $transition;
+        z-index: 99999;
+        overflow-y: scroll;
+        padding-bottom: 2rem;
+
+        &__list {
+            &__header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid $gray;
+                padding: 0 0 .5rem;
+
+                p {
+                    color: $gray;
+                    @include title;
+                    font-weight: 500;
+                }
+
+                i {
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    color: $gray;
+                }
+            }
+
+            &__form {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+
+                label {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+
+                    p {
+                        color: $black;
+                        font-size: 1.1rem;
+                        font-weight: 500;
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: .5rem 1rem;
+                        border: 1px solid $gray;
+                        border-radius: $radius;
+                        transition: border-color .2s;
+
+                        &:focus {
+                            border: 1px solid $blue;
+                        }
+                    }
+
+                    textarea {
+                        width: 100%;
+                        height: 100px;
+                        padding: .5rem 1rem;
+                        border: 1px solid $gray;
+                        border-radius: $radius;
+                        transition: border-color .2s;
+                        resize: none;
+
+                        &:focus {
+                            border: 1px solid $blue;
+                        }
+                    }
+                }
+
+                span {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+
+                    p {
+                        color: $black;
+                        font-size: 1.1rem;
+                        font-weight: 500;
+                    }
+
+                    label {
+                        width: auto;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 5px;
+
+                        p {
+                            color: $gray;
+                            font-size: 1rem;
+                            font-weight: 500;
+                        }
+
+                        input {
+                            width: .7rem;
+                            height: .7rem;
+                        }
+                    }
+                }
+
+                button {
+                    margin-top: 1rem;
+                    width: 100%;
+                    padding: .5rem 1rem;
+                    border: none;
+                    background-color: $blue;
+                    color: $white;
+                    border-radius: $radius;
+                    font-size: 1.1rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: $transition;
+
+                    &:hover {
+                        background-color: $purple;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .leftGroupIntro {
+        &__btn {
+            padding: 0.4rem .8rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 565px) {
+    .leftGroupIntro {
+        &__search {
+            &__btn {
+                width: 100%;
+            }
+        }
+    }
+}

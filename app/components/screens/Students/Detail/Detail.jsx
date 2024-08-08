@@ -179,28 +179,6 @@ const Detail = () => {
         });
     };
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
-
-    const handleNextPage = () => {
-        setCurrentPage((prevPage) => prevPage + 1);
-    };
-
-    const handlePrevPage = () => {
-        setCurrentPage((prevPage) => prevPage - 1);
-    };
-
-    const handleFilter = () => {
-        const appliedFilters = {
-            status: filters.status ? filters.status.value : null,
-            teacher: filters.teacher ? filters.teacher.value : null,
-            course: filters.course ? filters.course.value : null,
-            day: filters.day ? filters.day.value : null,
-        };
-
-        console.log('Applied Filters:', appliedFilters);
-    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -215,21 +193,6 @@ const Detail = () => {
             ...formData,
             [name]: selectedOption,
         });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const dataToSubmit = {
-            phone: formData.phone,
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            course: formData.course ? formData.course.value : null,
-            group: formData.group ? formData.group.value : null,
-            notes: formData.notes,
-        };
-
-        console.log(dataToSubmit);
     };
 
     const handleEditSubmit = (e) => {
