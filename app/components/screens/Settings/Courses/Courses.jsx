@@ -2,6 +2,7 @@ import styles from './Courses.module.scss'
 import { Context } from '@/app/components/ui/Context/Context';
 import LeftIntro from '@/app/components/ui/Left/LeftIntro';
 import { useContext, useState } from 'react';
+import Select from "react-select";
 
 const data = [
     {
@@ -64,18 +65,28 @@ const data = [
 const Courses = () => {
     const { lan } = useContext(Context);
     const [loader, setLoader] = useState(false);
-    const [addRoom, setAddRoom] = useState(false);
+    const [addCourses, setAddCourses] = useState(false);
+
+
+    const [paymentData, setPaymentData] = useState([{ id: 1, name: 'Jony', }, { id: 2, name: 'Alex', }, { id: 3, name: 'Jasur', }, { id: 4, name: 'Saidjalol', }]);
+    const [selectedPayment, setSelectedPayment] = useState(null);
+
+    const productOptions = paymentData.map((item) => ({
+        value: item.id,
+        label: item.name,
+    }));
+
 
     return (
         <LeftIntro>
             <div className={styles.courses}>
                 <div
-                    className={`${styles.opacity} ${addRoom ? styles.opacityAct : ""}`}
+                    className={`${styles.opacity} ${addCourses ? styles.opacityAct : ""}`}
                     onClick={() => {
-                        setAddRoom(false)
+                        setAddCourses(false)
                     }}
                 ></div>
-                <button onClick={() => setAddRoom(true)} className={styles.courses__btn} type='button'>Yangisnini qo'shish</button>
+                <button onClick={() => setAddCourses(true)} className={styles.courses__btn} type='button'>Yangisnini qo'shish</button>
                 <div className={styles.courses__items}>
                     <div className={styles.courses__items__table}>
                         <div className={styles.courses__items__table__header}>
@@ -129,24 +140,57 @@ const Courses = () => {
                 </div>
 
                 <div
-                    className={`${styles.courses__register} ${addRoom ? styles.registerAct : ''}`}
+                    className={`${styles.courses__register} ${addCourses ? styles.registerAct : ''}`}
                 >
                     <div
-                        style={{ display: addRoom ? '' : 'none' }}
+                        style={{ display: addCourses ? '' : 'none' }}
                         className={styles.courses__register__list}
                     >
                         <div className={styles.courses__register__list__header}>
-                            <p>Xona qo'shish</p>
-                            <i onClick={() => setAddRoom(false)} className="fa-solid fa-x"></i>
+                            <p>Kurslar qo'shish</p>
+                            <i onClick={() => setAddCourses(false)} className="fa-solid fa-x"></i>
                         </div>
                         <form
                             className={styles.courses__register__list__form}
                         >
                             <label>
-                                <p>Xona nomi:</p>
+                                <p>Kurs nomi:</p>
                                 <input
                                     type="text"
                                     required
+                                />
+                            </label>
+
+                            <label htmlFor="student">
+                                <p>Dars davomiyligi:</p>
+                                <Select
+                                    options={productOptions}
+                                    placeholder
+                                    required
+                                />
+                            </label>
+
+                            <label>
+                                <p>Kurs davomiyligi (oylarda):</p>
+                                <input
+                                    type="number"
+                                    required
+                                />
+                            </label>
+
+                            <label>
+                                <p>Narxi:</p>
+                                <input
+                                    type="number"
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="comment">
+                                <p>Izoh:</p>
+                                <textarea
+                                    id="comment"
+                                    name="comment"
                                 />
                             </label>
 
